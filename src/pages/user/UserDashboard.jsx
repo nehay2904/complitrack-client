@@ -178,7 +178,7 @@ const UserDashboard = () => {
               <button
                 key={tab.key}
                 onClick={() => goToTab(tab.key)}
-                className={`px-4 py-3 text-sm font-bold border-b-2 transition ${
+                className={`px-3 py-3 text-sm font-bold border-b-2 transition ${
                   activeTab === tab.key
                     ? "border-blue-600 text-blue-600"
                     : "border-transparent text-gray-500 hover:text-gray-800"
