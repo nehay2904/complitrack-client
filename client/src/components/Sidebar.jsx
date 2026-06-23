@@ -7,6 +7,7 @@ const links = [
   { to: '/admin/compliances', label: 'Compliances', icon: '📋' },
   { to: '/admin/users', label: 'Users', icon: '👥' },
   { to: '/admin/alertlogs', label: 'Alert Logs', icon: '🔔' },
+  { to: '/admin/assignrecords', label: 'Assign Records', icon: '🗂' },
 ];
 
 const Sidebar = () => {

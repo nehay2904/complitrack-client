@@ -4,7 +4,6 @@ import toast from 'react-hot-toast';
 
 const statusColors = {
   Pending: 'bg-amber-50 text-amber-600 border-amber-200',
-  InProgress: 'bg-blue-50 text-blue-600 border-blue-200',
   Completed: 'bg-green-50 text-green-600 border-green-200',
 };
 
@@ -201,7 +200,6 @@ const Compliances = () => {
           className="px-4 py-2 bg-white border border-gray-300 rounded-lg text-gray-700 text-sm focus:outline-none focus:border-blue-500">
           <option value="">All Status</option>
           <option value="Pending">Pending</option>
-          <option value="InProgress">In Progress</option>
           <option value="Completed">Completed</option>
         </select>
         <select value={filterType} onChange={e => setFilterType(e.target.value)}
@@ -249,7 +247,6 @@ const Compliances = () => {
                     <select value={c.status} onChange={e => updateStatus(c._id, e.target.value)}
                       className={`px-2 py-1 rounded-full text-xs border font-medium focus:outline-none ${statusColors[c.status]}`}>
                       <option value="Pending">Pending</option>
-                      <option value="InProgress">In Progress</option>
                       <option value="Completed">Completed</option>
                     </select>
                   </td>

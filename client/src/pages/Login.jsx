@@ -68,8 +68,8 @@ const Login = () => {
             </button>
           </form>
           <div className="mt-6 p-3 bg-gray-50 rounded-lg">
-            <p className="text-xs text-gray-500 font-medium mb-1">Default admin</p>
-            <p className="text-xs text-gray-600">admin@jplmines.com / Admin@123</p>
+            <p className="text-xs text-gray-500 font-medium mb-1">Credentials</p>
+            <p className="text-xs text-gray-600">Password : Jindal@123</p>
           </div>
         </div>
         <p className="text-center text-gray-400 text-xs mt-6">© 2026 JPL Mines</p>

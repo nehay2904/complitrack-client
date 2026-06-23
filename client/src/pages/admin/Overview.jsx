@@ -15,7 +15,6 @@ const Overview = () => {
   const today = new Date();
   const total = compliances.length;
   const pending = compliances.filter(c => c.status === 'Pending').length;
-  const inProgress = compliances.filter(c => c.status === 'InProgress').length;
   const completed = compliances.filter(c => c.status === 'Completed').length;
   const overdue = compliances.filter(c => {
     if (c.status === 'Completed') return false;
@@ -28,7 +27,6 @@ const Overview = () => {
   const stats = [
     { label: 'Total', value: total, color: 'blue', icon: '📋' },
     { label: 'Pending', value: pending, color: 'amber', icon: '⏳' },
-    { label: 'In Progress', value: inProgress, color: 'blue', icon: '🔄' },
     { label: 'Overdue', value: overdue, color: 'red', icon: '🔴' },
     { label: 'Completed', value: completed, color: 'green', icon: '✅' },
   ];
