@@ -18,9 +18,9 @@ const returns = [
     id: '2',
     title: 'Annual Return — Employer (Category of Employees, Health & Welfare)',
     act: 'OSH Rules 2026',
-    clause: 'Rules 74 and 98(9)',
+    clause: 'Rules 74 ',
     detail: 'Every employer of an establishment shall send an annual return in FORM-XVII related to category of employees, health and welfare facilities, retrenchment or layoffs, bonus, maternity benefits etc. to the Inspector-cum-Facilitator having jurisdiction, electronically, on or before last day of February following end of each Calendar year.',
-    form: 'FORM XVII (incl. Part III)',
+    form: 'FORM XVII (Part II)',
     recurrence: 'Annual: On or before last day of February each year (for preceding calendar year)',
     submissionAuthority: 'Inspector-cum-Facilitator (jurisdiction)',
     signingAuthority: 'Employer / Principal Employer / Manager',
@@ -31,9 +31,9 @@ const returns = [
     id: '3',
     title: 'Annual Return — Principal Employer (Contract Labour)',
     act: 'OSH Rules 2026',
-    clause: 'Rules 74 and 98(9)',
+    clause: 'Rule 98(9)',
     detail: 'Every principal employer of an establishment shall also submit annual return in FORM-XVII (Part III) electronically to the authority and concerned Deputy Chief Labour Commissioner (Central) on or before last day of February, except in cases of contract which undertakes to produce given result.',
-    form: 'FORM XVII (incl. Part III)',
+    form: 'FORM XVII ( Part III)',
     recurrence: 'Annual: On or before last day of February each year (for preceding calendar year)',
     submissionAuthority: 'Deputy Chief Labour Commissioner (Central) — for Part III',
     signingAuthority: 'Employer / Principal Employer / Manager',
@@ -53,6 +53,20 @@ const returns = [
     mode: 'Electronic (Shram Suvidha Portal)',
     remarks: 'Due date is 30 days from close of half year — 30th July and 30th January respectively',
   },
+    {
+    id: '38',
+    section: 'SECTION D: PERIODIC RETURNS',
+    title: 'Annual Returns (Mine)',
+    act: 'Coal Mines Regulations, 2017',
+    clause: 'Reg. 4(1), (2)',
+    detail: 'On or before 1st day of February in every year, the owner, agent or manager shall submit to the Chief Inspector, the Regional Inspector and to the District Magistrate annual returns in respect of the preceding year.',
+    form: 'Form & method as specified by the Chief Inspector',
+    recurrence: 'Annual: On or before 1 February each year (for the preceding year)',
+    submissionAuthority: 'Chief Inspector; Regional Inspector; District Magistrate',
+    signingAuthority: 'Owner / Agent / Manager',
+    mode: 'Electronic / Physical',
+    remarks: 'Reg. 4(2): if abandoned/closed/discontinued for more than 60 days, or on change of ownership \u2014 return due within 30 days (or 90 days for discontinuance).'
+  }
 ];
 
 const Returns = () => {
