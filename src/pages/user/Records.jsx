@@ -44,19 +44,7 @@ const sections = [
         mode: 'Maintained',
         remarks: 'Record.',
       },
-      {
-        id: 'REC-4',
-        title: "Ventilation Officer's Record (Including Ventilation Measurements)",
-        act: 'Mines Act, 1952 r/w Coal Mines Regulations, 2017',
-        rule: 'Reg. 46',
-        detail: 'The ventilation officer shall maintain, in a bound paged book, a detailed record of the work performed, including ventilation measurements and readings.',
-        form: 'Bound paged book',
-        frequency: 'Maintained continuously',
-        authority: 'Maintained at mine',
-        signing: 'Ventilation Officer',
-        mode: 'Maintained',
-        remarks: 'Record.',
-      },
+ 
       {
         id: 'REC-5',
         title: "Overman's Report / Report Book",
@@ -83,19 +71,7 @@ const sections = [
         mode: 'Maintained (signed & dated)',
         remarks: 'Reg. 129 governs examination by sirdars.',
       },
-      {
-        id: 'REC-7',
-        title: 'Attendant of Main Mechanical Ventilator — Fan-House Record',
-        act: 'Mines Act, 1952 r/w Coal Mines Regulations, 2017',
-        rule: 'Reg. 51',
-        detail: 'Records of fan readings/observations are maintained in a bound paged book kept for the purpose at the fan-house.',
-        form: 'Bound paged book',
-        frequency: 'Per shift',
-        authority: 'Maintained at fan-house',
-        signing: 'Attendant of Main Mechanical Ventilator',
-        mode: 'Maintained',
-        remarks: 'Record.',
-      },
+  
       {
         id: '7',
         title: "Safety Officer's Work Record",
