@@ -9,8 +9,9 @@ const statusColors = {
 
 const emptyForm = {
   complianceId: '', type: 'recurring', act: '', title: '',
-  detail: '', recurrence: '', signingAuthority: '',
-  submissionAuthority: '', dueDate: '', alertDate: '', status: 'Pending'
+  detail: '', recurrence: '', signingAuthority: [],
+  submissionAuthority: '', dueDate: '', alertDate: '', status: 'Pending',
+  driveLink: ''
 };
 
 const Compliances = () => {
@@ -69,11 +70,12 @@ const Compliances = () => {
       title: c.title,
       detail: c.detail || '',
       recurrence: c.recurrence || '',
-      signingAuthority: c.signingAuthority?._id || '',
+      signingAuthority: c.signingAuthority?.map(u => u._id) || [],
       submissionAuthority: c.submissionAuthority || '',
       dueDate: c.dueDate || '',
       alertDate: c.alertDate || '',
-      status: c.status
+      status: c.status,
+      driveLink: c.driveLink || ''
     });
     setEditId(c._id);
     setShowForm(true);
@@ -100,9 +102,9 @@ const Compliances = () => {
     }
   };
 
-  const assignUser = async (id, userId) => {
+  const assignUsers = async (id, userIds) => {
     try {
-      await API.patch(`/compliances/${id}/assign`, { userId });
+      await API.patch(`/compliances/${id}/assign`, { userIds });
       toast.success('Assigned!');
       fetchData();
     } catch {
@@ -168,11 +170,29 @@ const Compliances = () => {
             <input placeholder="Submission Authority" value={form.submissionAuthority}
               onChange={e => setForm({ ...form, submissionAuthority: e.target.value })}
               className="px-3 py-2 border border-gray-300 rounded-lg text-gray-800 text-sm focus:outline-none focus:border-blue-500" />
-            <select value={form.signingAuthority} onChange={e => setForm({ ...form, signingAuthority: e.target.value })}
-              className="px-3 py-2 border border-gray-300 rounded-lg text-gray-700 text-sm focus:outline-none focus:border-blue-500">
-              <option value="">Assign to user</option>
-              {users.map(u => <option key={u._id} value={u._id}>{u.name} — {u.dept}</option>)}
-            </select>
+            <input placeholder="Google Drive Link (document/proof)" value={form.driveLink}
+              onChange={e => setForm({ ...form, driveLink: e.target.value })}
+              className="px-3 py-2 border border-gray-300 rounded-lg text-gray-800 text-sm focus:outline-none focus:border-blue-500" />
+            <div className="col-span-2 lg:col-span-1">
+              <p className="text-xs text-gray-500 mb-1">Signing Authority (select one or more)</p>
+              <div className="border border-gray-300 rounded-lg px-3 py-2 max-h-28 overflow-y-auto space-y-1">
+                {users.map(u => (
+                  <label key={u._id} className="flex items-center gap-2 text-sm text-gray-700">
+                    <input
+                      type="checkbox"
+                      checked={form.signingAuthority.includes(u._id)}
+                      onChange={e => {
+                        const next = e.target.checked
+                          ? [...form.signingAuthority, u._id]
+                          : form.signingAuthority.filter(id => id !== u._id);
+                        setForm({ ...form, signingAuthority: next });
+                      }}
+                    />
+                    {u.name} — {u.dept}
+                  </label>
+                ))}
+              </div>
+            </div>
             <textarea placeholder="Detail / Description" value={form.detail}
               onChange={e => setForm({ ...form, detail: e.target.value })}
               rows={2}
@@ -221,6 +241,7 @@ const Compliances = () => {
                 <th className="text-left px-4 py-3 text-gray-500 font-medium">Type</th>
                 <th className="text-left px-4 py-3 text-gray-500 font-medium">Due Date</th>
                 <th className="text-left px-4 py-3 text-gray-500 font-medium">Alert Date</th>
+                <th className="text-left px-4 py-3 text-gray-500 font-medium">Document</th>
                 <th className="text-left px-4 py-3 text-gray-500 font-medium">Status</th>
                 <th className="text-left px-4 py-3 text-gray-500 font-medium">Assigned To</th>
                 <th className="text-left px-4 py-3 text-gray-500 font-medium">Actions</th>
@@ -228,7 +249,7 @@ const Compliances = () => {
             </thead>
             <tbody>
               {filtered.length === 0 ? (
-                <tr><td colSpan={8} className="text-center text-gray-400 py-10">No compliances found</td></tr>
+                <tr><td colSpan={9} className="text-center text-gray-400 py-10">No compliances found</td></tr>
               ) : filtered.map(c => (
                 <tr key={c._id} className="border-b border-gray-50 hover:bg-gray-50">
                   <td className="px-4 py-3 text-blue-500 font-mono text-xs">{c.complianceId}</td>
@@ -243,6 +264,16 @@ const Compliances = () => {
                   </td>
                   <td className="px-4 py-3 text-gray-500 text-xs">{c.dueDate || '—'}</td>
                   <td className="px-4 py-3 text-gray-500 text-xs">{c.alertDate || '—'}</td>
+                  <td className="px-4 py-3 text-xs">
+                    {c.driveLink ? (
+                      <a href={c.driveLink} target="_blank" rel="noopener noreferrer"
+                        className="px-2 py-1 bg-blue-50 text-blue-600 border border-blue-200 rounded hover:bg-blue-100 transition">
+                        View 📎
+                      </a>
+                    ) : (
+                      <span className="text-gray-300">—</span>
+                    )}
+                  </td>
                   <td className="px-4 py-3">
                     <select value={c.status} onChange={e => updateStatus(c._id, e.target.value)}
                       className={`px-2 py-1 rounded-full text-xs border font-medium focus:outline-none ${statusColors[c.status]}`}>
@@ -251,12 +282,34 @@ const Compliances = () => {
                     </select>
                   </td>
                   <td className="px-4 py-3">
-                    <select value={c.signingAuthority?._id || ''}
-                      onChange={e => assignUser(c._id, e.target.value)}
-                      className="px-2 py-1 bg-white border border-gray-300 rounded text-gray-700 text-xs focus:outline-none focus:border-blue-500">
-                      <option value="">Unassigned</option>
-                      {users.map(u => <option key={u._id} value={u._id}>{u.name}</option>)}
-                    </select>
+                    <details className="relative">
+                      <summary className="cursor-pointer list-none px-2 py-1 bg-white border border-gray-300 rounded text-gray-700 text-xs hover:bg-gray-50">
+                        {c.signingAuthority?.length
+                          ? c.signingAuthority.map(u => u.name).join(', ')
+                          : 'Unassigned'}
+                      </summary>
+                      <div className="absolute z-10 mt-1 w-56 bg-white border border-gray-300 rounded-lg shadow-lg p-2 max-h-40 overflow-y-auto space-y-1">
+                        {users.map(u => {
+                          const currentIds = (c.signingAuthority || []).map(a => a._id);
+                          const checked = currentIds.includes(u._id);
+                          return (
+                            <label key={u._id} className="flex items-center gap-2 text-xs text-gray-700 px-1 py-0.5 hover:bg-gray-50 rounded">
+                              <input
+                                type="checkbox"
+                                checked={checked}
+                                onChange={e => {
+                                  const next = e.target.checked
+                                    ? [...currentIds, u._id]
+                                    : currentIds.filter(id => id !== u._id);
+                                  assignUsers(c._id, next);
+                                }}
+                              />
+                              {u.name}
+                            </label>
+                          );
+                        })}
+                      </div>
+                    </details>
                   </td>
                   <td className="px-4 py-3">
                     <div className="flex gap-2">

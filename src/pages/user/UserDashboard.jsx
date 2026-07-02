@@ -178,7 +178,7 @@ const UserDashboard = () => {
               <button
                 key={tab.key}
                 onClick={() => goToTab(tab.key)}
-                className={`px-3 py-3 text-sm font-bold border-b-2 transition ${
+                className={`px-4 py-3 text-sm font-bold border-b-2 transition ${
                   activeTab === tab.key
                     ? "border-blue-600 text-blue-600"
                     : "border-transparent text-gray-500 hover:text-gray-800"
@@ -293,6 +293,14 @@ const UserDashboard = () => {
                             {c.submissionAuthority && (
                               <span>🏛 {c.submissionAuthority}</span>
                             )}
+                            {c.driveLink && (
+                              <span
+                                onClick={() => window.open(c.driveLink, "_blank")}
+                                className="text-blue-600 hover:underline font-medium cursor-pointer"
+                              >
+                                📎 View Document
+                              </span>
+                            )}
                           </div>
                         </div>
                         <div className="flex flex-col gap-2 min-w-fit">
@@ -318,6 +326,7 @@ const UserDashboard = () => {
             </div>
           </>
         )}
+        {activeTab === "internal-mine-documents" && <InternalMineDocuments />}
         {activeTab === "rules" && <RulesRegulations />}
         {activeTab === "notices" && <Notices />}
         {activeTab === "returns" && <Returns />}

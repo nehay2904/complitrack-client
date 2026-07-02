@@ -69,9 +69,19 @@ const Overview = () => {
               <div key={c._id} className="flex items-center justify-between p-3 bg-red-50 border border-red-100 rounded-lg">
                 <div>
                   <p className="text-gray-800 text-sm font-medium">{c.title}</p>
-                  <p className="text-gray-400 text-xs">{c.complianceId} · {c.signingAuthority?.name || 'Unassigned'}</p>
+                  <p className="text-gray-400 text-xs">
+                    {c.complianceId} · {c.signingAuthority?.length ? c.signingAuthority.map(u => u.name).join(', ') : 'Unassigned'}
+                  </p>
                 </div>
-                <span className="text-red-500 text-xs font-medium">Due: {c.dueDate}</span>
+                <div className="flex items-center gap-3">
+                  {c.driveLink && (
+                    <a href={c.driveLink} target="_blank" rel="noopener noreferrer"
+                      className="text-blue-500 text-xs hover:underline">
+                      📎 Document
+                    </a>
+                  )}
+                  <span className="text-red-500 text-xs font-medium">Due: {c.dueDate}</span>
+                </div>
               </div>
             ))}
           </div>
