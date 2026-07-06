@@ -90,6 +90,14 @@ function App() {
             }
           />
           <Route
+            path="/dashboard/safety-committee"
+            element={
+              <ProtectedRoute>
+                <UserDashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
             path="/dashboard/internal-mine-documents"
             element={
               <ProtectedRoute>

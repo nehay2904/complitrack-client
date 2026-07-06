@@ -10,11 +10,26 @@ import Records from "./Records";
 import jindalLogo from "../../assets/jindal-logo.png";
 import MyRecords from "./MyRecords";
 import RulesRegulations from "./RulesRegulations";
-import InternalMineDocuments from "./Internal Mine Documents"
+import InternalMineDocuments from "./Internal Mine Documents";
+import SafetyCommittee from "./SafetyCommittee";
+
 const statusColors = {
   Pending: "bg-amber-500 text-white border-amber-600",
   Completed: "bg-green-600 text-white border-green-700",
 };
+
+// Sidebar nav config — add/remove tabs here only, markup below reads from this list
+const NAV_ITEMS = [
+  { key: "tasks", label: "My Tasks", icon: "📋" },
+  { key: "myrecords", label: "Update my Records", icon: "🗂" },
+   { key: "safety-committee", label: "Safety Committee", icon: "🦺", isNew: true },
+  { key: "rules", label: "Rules & Regulations", icon: "📜" },
+  { key: "notices", label: "Notices", icon: "📢" },
+  { key: "returns", label: "Returns", icon: "📊" },
+  { key: "forms", label: "Forms", icon: "📄" },
+  { key: "records", label: "Statutory Records", icon: "🗂" },
+   { key: "internal-mine-documents", label: "COPs/SOPs", icon: "📄" },
+];
 
 const UserDashboard = () => {
   const { user, logout } = useAuth();
@@ -98,100 +113,69 @@ const UserDashboard = () => {
     );
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Navbar */}
-      <div className="bg-white border-b border-gray-200 shadow-sm">
-        {/* Top Row */}
-        <div className="px-6 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <img
-              src={jindalLogo}
-              alt="Jindal Power"
-              className="w-12 h-12 object-contain"
-            />
-            <div>
-              <h1 className="text-gray-800 font-medium leading-none">
-                CompliTrack
-              </h1>
-              <p className="text-gray-400 text-xs">JPL Mines</p>
-            </div>
-          </div>
-          <div className="flex items-center gap-4">
-            <div className="text-right">
-              <p className="text-gray-800 text-sm font-medium">{user?.name}</p>
-              <p className="text-gray-400 text-xs">{user?.dept}</p>
-            </div>
-            <div className="w-9 h-9 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-sm">
-              {user?.name?.charAt(0)}
-            </div>
-            <button
-              onClick={handleLogout}
-              className="px-4 py-2 bg-gray-100 hover:bg-red-50 hover:text-red-500 text-gray-600 text-sm rounded-lg transition"
-            >
-              Logout
-            </button>
-          </div>
-        </div>
+    <div className="min-h-screen flex bg-gray-50">
+      {/* Sidebar */}
+   <aside className="w-64 bg-green-900 text-white flex flex-col sticky top-0 h-screen shrink-0">
+  <div className="flex items-center gap-3 px-5 py-5 border-b border-green-800">
+    <img
+      src={jindalLogo}
+      alt="Jindal Power"
+      className="w-9 h-9 object-contain"
+    />
+    <div>
+      <h1 className="font-semibold leading-none">CompliTrack</h1>
+      <p className="text-green-300 text-xs mt-1">JPL Mines</p>
+    </div>
+  </div>
 
-        {/* Bottom Row — two sides */}
-        <div className="px-6 flex items-center justify-between border-t border-gray-100">
-          {/* Left — My Tasks + My Records */}
-        {/* Left — My Tasks + My Records */}
-<div className="flex gap-1">
-  {[
-    { key: "tasks", label: "📋 My Tasks" },
-    { key: "myrecords", label: "🗂 Update my Records" },
-  ].map((tab) => (
-    <button
-      key={tab.key}
+  <nav className="flex-1 overflow-y-auto py-3 px-2 space-y-1">
+    {NAV_ITEMS.map((tab) => (
+      <button
+        key={tab.key}
+        onClick={() => goToTab(tab.key)}
+        className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition ${
+          activeTab === tab.key
+            ? "bg-green-800 text-white border-l-4 border-amber-500 pl-2"
+            : "text-green-100 hover:bg-green-800/60 hover:text-white"
+        }`}
+      >
+        <span>{tab.icon}</span>
+        <span className="flex-1 text-left">{tab.label}</span>
+        {tab.key === "tasks" && counts.pending + counts.overdue > 0 && (
+          <span className="inline-flex items-center justify-center min-w-[20px] h-5 px-1.5 bg-red-600 text-white text-xs font-bold rounded-full">
+            {counts.pending + counts.overdue}
+          </span>
+        )}
+        {tab.isNew && (
+          <span className="px-1.5 py-0.5 bg-amber-500/20 text-amber-400 text-[10px] font-bold rounded">
+            NEW
+          </span>
+        )}
+      </button>
+    ))}
+  </nav>
 
-
-
-      onClick={() => goToTab(tab.key)}
-      className={`relative px-4 py-3 text-sm font-bold border-b-2 transition ${
-        activeTab === tab.key
-          ? "border-blue-600 text-blue-600"
-          : "border-transparent text-gray-500 hover:text-gray-800"
-      }`}
-    >
-      {tab.label}
-      {tab.key === "tasks" && (
-  <span className="ml-2 inline-flex items-center justify-center min-w-[20px] h-5 px-1.5 bg-red-600 text-white text-xs font-bold rounded-full">
-    {counts.pending + counts.overdue}
-  </span>
-)}
-    </button>
-  ))}
-</div>
-
-          {/* Right — Notices, Returns, Forms, Records */}
-          <div className="flex gap-1">
-            {[
-                { key: "internal-mine-documents", label: "📄 Internal Documents" },
-              { key: "rules", label: "📜 Rules & Regulations" },
-              { key: "notices", label: "📢 Notices" },
-              { key: "returns", label: "📊 Returns" },
-              { key: "forms", label: "📄 Forms" },
-              { key: "records", label: "🗂 Statutory Records" },
-            
-            ].map((tab) => (
-              <button
-                key={tab.key}
-                onClick={() => goToTab(tab.key)}
-                className={`px-4 py-3 text-sm font-bold border-b-2 transition ${
-                  activeTab === tab.key
-                    ? "border-blue-600 text-blue-600"
-                    : "border-transparent text-gray-500 hover:text-gray-800"
-                }`}
-              >
-                {tab.label}
-              </button>
-            ))}
-          </div>
-        </div>
+  <div className="border-t border-green-800 px-5 py-4">
+    <div className="flex items-center gap-3 mb-3">
+      <div className="w-9 h-9 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-sm shrink-0">
+        {user?.name?.charAt(0)}
       </div>
+      <div className="min-w-0">
+        <p className="text-sm font-medium truncate">{user?.name}</p>
+        <p className="text-green-300 text-xs truncate">{user?.dept}</p>
+      </div>
+    </div>
+    <button
+      onClick={handleLogout}
+      className="w-full px-3 py-2 bg-green-800 hover:bg-red-600 text-green-100 text-sm rounded-lg transition"
+    >
+      Logout
+    </button>
+  </div>
+</aside>
 
-      <div className="p-8">
+      {/* Main content */}
+      <main className="flex-1 p-8 overflow-y-auto">
         {activeTab === "tasks" && (
           <>
             <h2 className="text-2xl font-normal text-gray-800 mb-1">
@@ -201,49 +185,6 @@ const UserDashboard = () => {
               Your assigned compliance tasks
             </p>
 
-            {/* Filter Cards */}
-            <div className="grid grid-cols-2 lg:grid-cols-5 gap-4 mb-8">
-              {[
-                {
-                  key: "all",
-                  label: "All Tasks",
-                  value: counts.all,
-                  cls: "bg-blue-600 text-white",
-                },
-                {
-                  key: "pending",
-                  label: "Pending",
-                  value: counts.pending,
-                  cls: "bg-amber-500 text-white",
-                },
-
-                {
-                  key: "completed",
-                  label: "Completed",
-                  value: counts.completed,
-                  cls: "bg-green-600 text-white",
-                },
-                {
-                  key: "overdue",
-                  label: "Overdue",
-                  value: counts.overdue,
-                  cls: "bg-red-600 text-white",
-                },
-              ].map((card) => (
-                <button
-                  key={card.key}
-                  onClick={() => setFilter(card.key)}
-                  className={`rounded-xl p-4 text-left transition shadow-sm ${card.cls} ${filter === card.key ? "ring-4 ring-offset-2 ring-gray-300" : ""}`}
-                >
-                  <p className="text-sm font-bold">{card.value}</p>
-                  <p className="text-xl font-bold opacity-90 mt-1">
-                    {card.label}
-                  </p>
-                </button>
-              ))}
-            </div>
-
-            {/* Task Cards */}
             <div className="space-y-3">
               {filtered.length === 0 ? (
                 <div className="text-center text-black-400 py-20 bg-white rounded-xl border border-gray-200">
@@ -333,7 +274,8 @@ const UserDashboard = () => {
         {activeTab === "forms" && <Forms />}
         {activeTab === "records" && <Records />}
         {activeTab === "myrecords" && <MyRecords />}
-      </div>
+        {activeTab === "safety-committee" && <SafetyCommittee />}
+      </main>
     </div>
   );
 };

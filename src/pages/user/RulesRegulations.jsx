@@ -13,8 +13,9 @@ const documents = [
     title: 'OSH Central Rules 2026 (Occupational Safety, Health and Working Conditions Central Rules, 2026)',
     link: 'https://drive.google.com/file/d/1apaoSEccNgTUtynRJu2a_MMjwX38H5ga/view?usp=sharing',
     color: 'green',
-  }, {
-    title: '	Central Electricity Authority (Measures relating to Safety and Electric Supply) Regulations, 2023',
+  },
+  {
+    title: 'Central Electricity Authority (Measures relating to Safety and Electric Supply) Regulations, 2023',
     link: 'https://drive.google.com/file/d/1agplAk7P-30BEEdxzuaZkf6FrMXlfLYV/view?usp=sharing',
     color: 'purple',
   },
@@ -22,10 +23,26 @@ const documents = [
     title: 'The Explosives Rules, 2008',
     link: 'https://drive.google.com/file/d/1Uk_4ci225hXHieWmW7oyEU0if77I_k_A/view?usp=sharing',
     color: 'pink',
-  }, {
+  },
+  {
     title: 'Explosives (Amendment) Rules, 2025 - PESO',
     link: 'https://drive.google.com/file/d/1pAzytbDMN54Z3d6JBTtZi0LfWVV0ReS7/view?usp=sharing',
     color: 'red',
+  },
+  {
+    title: 'Code on Wages, 2019',
+    link: 'https://drive.google.com/file/d/1FQrZk1HGJMr7fjaQeIu9GAOPCoIZ0GPX/view?usp=sharing',
+    color: 'teal',
+  },
+  {
+    title: 'Industrial Relations Code, 2020',
+    link: 'https://drive.google.com/file/d/1A9taCaBzSXLQ-5zMUK2Ysd8lLgtOxGIv/view?usp=sharing',
+    color: 'yellow',
+  },
+  {
+    title: 'Code on Social Security, 2020',
+    link: 'https://drive.google.com/file/d/1O87wieU25LYWeH0dZoNqBhwpZZLduh4K/view?usp=sharing',
+    color: 'indigo',
   },
 ];
 
@@ -35,7 +52,10 @@ const colorMap = {
   green: { dot: 'bg-green-600', text: 'text-green-600', light: 'bg-green-50' },
   purple: { dot: 'bg-purple-600', text: 'text-purple-600', light: 'bg-purple-50' },
   pink: { dot: 'bg-pink-600', text: 'text-pink-600', light: 'bg-pink-50' },
-  red: { dot: 'bg-red-600', text: 'text-red-600', light: 'bg-red-50' }
+  red: { dot: 'bg-red-600', text: 'text-red-600', light: 'bg-red-50' },
+  teal: { dot: 'bg-teal-600', text: 'text-teal-600', light: 'bg-teal-50' },
+  yellow: { dot: 'bg-yellow-600', text: 'text-yellow-600', light: 'bg-yellow-50' },
+  indigo: { dot: 'bg-indigo-600', text: 'text-indigo-600', light: 'bg-indigo-50' }
 };
 
 const RulesRegulations = () => {
