@@ -67,7 +67,7 @@ const SafetyCommittee = () => {
       const { data } = await API.get("/users");
       setUsers(data);
     } catch {
-      
+      toast.error("Failed to load users");
     }
   };
 
@@ -83,7 +83,7 @@ const SafetyCommittee = () => {
       setMeetings((prev) => [data, ...prev]);
       setSelectedId(data._id);
     } catch {
-      toast.error("");
+      toast.error("Failed to schedule meeting");
     }
   };
 
@@ -132,7 +132,14 @@ const SafetyCommittee = () => {
             Monthly meetings, observations and corrective action
           </p>
         </div>
-      
+        {(
+          <button
+            onClick={() => setShowMeetingForm(true)}
+            className="px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold rounded-lg transition"
+          >
+            + Schedule new meeting
+          </button>
+        )}
       </div>
 
       {/* Meeting cards */}
@@ -186,7 +193,14 @@ const SafetyCommittee = () => {
                 Raised by safety officer, action submitted by responsible authority
               </p>
             </div>
-           
+            {(
+              <button
+                onClick={() => setShowObsForm(true)}
+                className="px-3 py-2 bg-gray-800 hover:bg-gray-900 text-white text-xs font-semibold rounded-lg transition"
+              >
+                + Add observation
+              </button>
+            )}
           </div>
 
           <div className="overflow-x-auto">

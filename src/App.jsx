@@ -11,6 +11,7 @@ import AlertLogs from "./pages/admin/AlertLogs";
 import UserDashboard from "./pages/user/UserDashboard";
 import AssignRecords from "./pages/admin/AssignRecords";
 import InternalMineDocuments  from "./pages/user/Internal Mine Documents";
+import SafetyCommittee from "./pages/admin/Adminsafetycommittee";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
             <Route path="users" element={<Users />} />
             <Route path="alertlogs" element={<AlertLogs />} />
             <Route path="assignrecords" element={<AssignRecords />} />
+            <Route path="safety-committee" element={<SafetyCommittee />} />
           </Route>
           <Route
             path="/dashboard"
@@ -92,7 +94,7 @@ function App() {
           <Route
             path="/dashboard/safety-committee"
             element={
-              <ProtectedRoute>
+              <ProtectedRoute adminOnly>
                 <UserDashboard />
               </ProtectedRoute>
             }

@@ -34,6 +34,7 @@ const NAV_ITEMS = [
 const UserDashboard = () => {
   const { user, logout } = useAuth();
   const [compliances, setCompliances] = useState([]);
+  const [mySafetyTasks, setMySafetyTasks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState("all");
   const navigate = useNavigate();
@@ -61,6 +62,29 @@ const UserDashboard = () => {
       toast.error("Failed to load");
     } finally {
       setLoading(false);
+    }
+    try {
+      const { data } = await API.get("/safety-meetings/observations/mine");
+      setMySafetyTasks(data);
+    } catch {
+      // non-fatal, just skip the section
+    }
+  };
+
+  const submitSafetyTaskSolution = async (task, solution) => {
+    if (!solution.trim()) {
+      toast.error("Enter the action taken before saving");
+      return;
+    }
+    try {
+      await API.patch(
+        `/safety-meetings/${task.meetingId}/observations/${task._id}`,
+        { solution, status: "Closed" },
+      );
+      toast.success("Solution submitted");
+      fetchData();
+    } catch {
+      toast.error("Failed to submit solution");
     }
   };
 
@@ -265,6 +289,26 @@ const UserDashboard = () => {
                 })
               )}
             </div>
+
+            {mySafetyTasks.length > 0 && (
+              <div className="mt-8">
+                <h3 className="text-lg font-normal text-gray-800 mb-1">
+                  My Safety Committee Tasks
+                </h3>
+                <p className="text-gray-500 text-sm mb-3">
+                  Observations assigned to you from safety committee meetings
+                </p>
+                <div className="space-y-3">
+                  {mySafetyTasks.map((t) => (
+                    <SafetyTaskCard
+                      key={t._id}
+                      task={t}
+                      onSubmit={submitSafetyTaskSolution}
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
           </>
         )}
         {activeTab === "internal-mine-documents" && <InternalMineDocuments />}
@@ -276,6 +320,93 @@ const UserDashboard = () => {
         {activeTab === "myrecords" && <MyRecords />}
         {activeTab === "safety-committee" && <SafetyCommittee />}
       </main>
+    </div>
+  );
+};
+
+const safetySeverityColors = {
+  High: "bg-red-100 text-red-700 border-red-300",
+  Medium: "bg-amber-100 text-amber-700 border-amber-300",
+  Low: "bg-green-100 text-green-700 border-green-300",
+};
+
+const SafetyTaskCard = ({ task, onSubmit }) => {
+  const [editing, setEditing] = useState(false);
+  const [solution, setSolution] = useState(task.solution || "");
+  const today = new Date();
+  const target = new Date(task.targetDate);
+  const isOverdue =
+    task.status !== "Closed" && !isNaN(target) && today > target;
+
+  return (
+    <div
+      className={`bg-white rounded-xl border-2 p-5 shadow-sm ${
+        isOverdue
+          ? "border-l-4 border-l-red-600 border-red-300"
+          : task.status === "Closed"
+          ? "border-l-4 border-l-green-600 border-green-300"
+          : "border-gray-300"
+      }`}
+    >
+      <div className="flex items-start justify-between gap-4">
+        <div className="flex-1">
+          <div className="flex items-center gap-2 mb-2 flex-wrap">
+            <span className="text-blue-600 font-mono text-xs font-bold">
+              {task.month}
+            </span>
+            <span
+              className={`px-2 py-0.5 rounded-full text-xs font-medium border ${safetySeverityColors[task.severity]}`}
+            >
+              {task.severity}
+            </span>
+            {isOverdue && (
+              <span className="text-red-600 text-xs font-bold">OVERDUE</span>
+            )}
+            {task.status === "Closed" && (
+              <span className="text-green-600 text-xs font-bold">CLOSED</span>
+            )}
+          </div>
+          <h3 className="text-black-800 font-medium mb-1">
+            {task.description}
+          </h3>
+          <div className="flex flex-wrap gap-3 text-xs text-black-600 mt-2">
+            {task.location && <span>📍 {task.location}</span>}
+            {task.targetDate && (
+              <span>📅 Target: {new Date(task.targetDate).toLocaleDateString()}</span>
+            )}
+          </div>
+          {task.status === "Closed" && task.solution && (
+            <p className="text-xs text-gray-600 mt-2">✅ {task.solution}</p>
+          )}
+        </div>
+        <div className="flex flex-col gap-2 min-w-fit">
+          {task.status !== "Closed" &&
+            (editing ? (
+              <div className="flex flex-col gap-2 w-48">
+                <input
+                  autoFocus
+                  value={solution}
+                  onChange={(e) => setSolution(e.target.value)}
+                  placeholder="Action taken..."
+                  className="border border-gray-300 rounded px-2 py-1 text-xs w-full"
+                />
+                <button
+                  onClick={() => onSubmit(task, solution)}
+                  className="px-3 py-2 bg-green-600 hover:bg-green-700 text-white text-xs font-semibold rounded-lg transition whitespace-nowrap shadow-sm"
+                >
+                  Save & Close
+                </button>
+              </div>
+            ) : (
+              <button
+                onClick={() => setEditing(true)}
+                className="px-3 py-2 bg-green-600 hover:bg-green-700 text-white text-xs font-semibold rounded-lg transition whitespace-nowrap shadow-sm"
+              >
+                Submit solution
+              </button>
+            ))}
+        </div>
+      </div>
     </div>
   );
 };
