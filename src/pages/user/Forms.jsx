@@ -451,7 +451,7 @@ const cmrForms = [
 
 
 const explosivesForms = [
- {
+  {
     id: 'er-1',
     form: 'FORM LE-3',
     title: 'Licence to possess for use, explosives of Class 1, 2, 3, 4, 5, 6 or 7 in a magazine',
@@ -501,7 +501,7 @@ const explosivesForms = [
     signingAuthority: 'Occupier / Applicant',
     submissionAuthority: 'Controller of Explosives (PESO)',
     timeline: 'Before commencing road van transport, or before amendment/transfer',
-    link: '',
+    link: 'https://drive.google.com/file/d/1N_uusT-mnkF1Mbkj6yUEPHKrXp4mILqs/view?usp=drivesdk',
   },
   {
     id: 'er-5',
@@ -514,7 +514,7 @@ const explosivesForms = [
     signingAuthority: 'Occupier / Applicant',
     submissionAuthority: 'District Magistrate / Directorate General of Mines Safety (DGMS, for sites under the Mines Act)',
     timeline: 'Before applying for magazine, manufacture, or road van transport licence',
-    link: '',
+    link: 'https://drive.google.com/file/d/1TUMcAcMG21PqFzVVzDU8POOFFnwPRU37/view?usp=drivesdk',
   },
   {
     id: 'er-6',
@@ -527,7 +527,7 @@ const explosivesForms = [
     signingAuthority: 'Occupier / Licensee',
     submissionAuthority: 'Controller of Explosives (PESO)',
     timeline: 'Prior to commencing on-site ANFO manufacture; renewed annually before expiry',
-    link: '',
+    link: 'https://drive.google.com/file/d/1HbR1hmsLAyKDsHJehLNPhLCddm9OFQWP/view?usp=drivesdk',
   },
   {
     id: 'er-7',
@@ -540,7 +540,7 @@ const explosivesForms = [
     signingAuthority: 'Occupier / Applicant',
     submissionAuthority: 'Controller of Explosives (PESO)',
     timeline: 'Before commencing manufacture, or before amendment/transfer of an existing licence',
-    link: '',
+    link: 'https://drive.google.com/file/d/11tU2wVmtXSDqAGV-OFy5vJp2N9c9fkZY/view?usp=drivesdk',
   },
   {
     id: 'er-8',
@@ -566,7 +566,7 @@ const explosivesForms = [
     signingAuthority: 'Occupier / Licensee / Authorised Signatory',
     submissionAuthority: 'Maintained at site for inspection by Controller of Explosives',
     timeline: 'Updated continuously as ANFO is manufactured',
-    link: '',
+    link: 'https://drive.google.com/file/d/1OFdEUVNQt7I9xH556IMENHHYPmrXcejG/view?usp=drivesdk',
   },
   {
     id: 'er-10',
@@ -579,7 +579,7 @@ const explosivesForms = [
     signingAuthority: 'Occupier / Licensee / Authorised Signatory',
     submissionAuthority: 'Maintained at site for inspection by Controller of Explosives',
     timeline: 'Updated on each receipt of explosives into the magazine',
-    link: '',
+    link: 'https://drive.google.com/file/d/1lxBHOwcqCBuxO4RIfJ6kMoI4eoAaxPqE/view?usp=drivesdk',
   },
   {
     id: 'er-11',
@@ -605,7 +605,7 @@ const explosivesForms = [
     signingAuthority: 'Occupier / Licensee / Driver-in-charge',
     submissionAuthority: 'Maintained at site for inspection by Controller of Explosives',
     timeline: 'Updated for every transport of explosives by road van',
-    link: '',
+    link: 'https://drive.google.com/file/d/10TQLLzU4XxaQ4hGehPFhTn1hPv57w8Vt/view?usp=drivesdk',
   },
   {
     id: 'er-13',
@@ -644,7 +644,7 @@ const explosivesForms = [
     signingAuthority: 'Consignor (Supplier), countersigned on receipt by Consignee (Occupier)',
     submissionAuthority: 'Controller of Explosives (PESO) — copy forwarded',
     timeline: 'Issued with every consignment dispatched to the mine',
-    link: '',
+    link: 'https://drive.google.com/file/d/17wuWBNI9QDUrzvg6ZuzNZ3Ek7gu4eXHe/view?usp=drivesdk',
   },
   {
     id: 'er-16',
@@ -670,13 +670,110 @@ const explosivesForms = [
     signingAuthority: 'Controller of Explosives (issuing authority)',
     submissionAuthority: 'Controller of Explosives (PESO)',
     timeline: 'Issued at time of licence grant; distances to be maintained throughout validity',
-    link: '',
+    link: 'https://drive.google.com/file/d/1FtytptGs4MyoXNAT7hCd8JH3PfBlqXiE/view?usp=drivesdk',
   },
-
 ];
 
+// CEA (Measures relating to Safety and Electric Supply) Regulations, 2023
+// Alert convention used: alertDate = 30 days before the due date (adjust to your policy).
+
 const cerForms = [
-  // Central Electricity Rules forms go here
+  {
+    id: 'cer-1',
+    form: 'FORM I',
+    title: 'Inspection Report — electrical installations of voltage up to and including 250 V',
+    regulation: 'CEA 2023',
+    rule: 'CEA (Measures relating to Safety and Electric Supply) Regulations, 2023, Regulations 32 & 45, Schedule II',
+    details: 'Inspection report / self-certification of a low-voltage installation (up to 250 V). Records the general safety conditions of the installation against Regulations 14–19, 36, 37, 43, 44 and overhead-line requirements (particulars of installation, connected load, earthing, RCD, etc.). Installations at or below the notified voltage are self-certified by the owner/supplier/consumer and the report submitted to the Electrical Inspector (Reg 32(3) & Reg 45).',
+    recurrence: 'Periodic (Electrical Safety Officer inspection at intervals not exceeding 1 year; statutory self-certification not exceeding 5 years)',
+    mode: 'FORM I (inspection report / self-certification submitted to Electrical Inspector)',
+    signingAuthority: 'Supplier / Owner / Consumer (self-certification) or Electrical Inspector',
+    submissionAuthority: 'Electrical Inspector (State Electrical Inspectorate)',
+    timeline: 'Before commencement of supply and on periodic inspection / self-certification',
+    dueDate: 'Before commencement of supply and after any shutdown of 6 months or more (Reg 45); ESO inspection at intervals not exceeding 1 year (Reg 5); statutory periodic self-certification not exceeding 5 years (Reg 32(2))',
+    alertDate: '30 days before the due inspection / self-certification date',
+    link: 'https://drive.google.com/file/d/16_hOByrwSe0Eb4E8cZEbiRGPaBwSoeTi/view?usp=drivesdk',
+  },
+  {
+    id: 'cea-2',
+    form: 'FORM II',
+    title: 'Inspection Report — electrical installations of voltage more than 250 V up to and including 650 V',
+    regulation: 'CEA 2023',
+    rule: 'CEA (Measures relating to Safety and Electric Supply) Regulations, 2023, Regulations 32 & 45, Schedule II',
+    details: 'Inspection report / self-certification of a medium-voltage installation (>250 V up to 650 V). Covers the record of designated persons (Reg 3), overloading, service lines, cut-outs, switches, danger notices, first-aid and resuscitation instructions, insulation resistance, switchboard clearances, earthing and overhead-line requirements. Report submitted to the Electrical Inspector (Reg 32 & Reg 45).',
+    recurrence: 'Periodic (Electrical Safety Officer inspection at intervals not exceeding 1 year; statutory self-certification not exceeding 5 years)',
+    mode: 'FORM II (inspection report / self-certification submitted to Electrical Inspector)',
+    signingAuthority: 'Supplier / Owner / Consumer (self-certification) or Electrical Inspector',
+    submissionAuthority: 'Electrical Inspector (State Electrical Inspectorate)',
+    timeline: 'Before commencement of supply and on periodic inspection / self-certification',
+    dueDate: 'Before commencement of supply and after any shutdown of 6 months or more (Reg 45); ESO inspection at intervals not exceeding 1 year (Reg 5); statutory periodic inspection / self-certification not exceeding 5 years (Reg 32(2))',
+    alertDate: '30 days before the due inspection / self-certification date',
+    link: 'https://drive.google.com/file/d/1KEbnAE-dTTVhHl_p_zUZxDVMGDbZkXCx/view?usp=drivesdk',
+  },
+  {
+    id: 'cea-3',
+    form: 'FORM III',
+    title: 'Inspection Report — electrical installations of voltage exceeding 650 V (with self-certification certificate)',
+    regulation: 'CEA 2023',
+    rule: 'CEA (Measures relating to Safety and Electric Supply) Regulations, 2023, Regulations 32 & 45, Schedule II',
+    details: 'Inspection report for a high-voltage installation (exceeding 650 V), including detailed equipment-wise test details for transformers, generators, circuit breakers, isolators, cables, panels, earthing, CTs/PTs and overhead lines, plus residual-life assessment for equipment over 15 years old. Installations above the notified voltage are inspected by the Electrical Inspector; the self-certification certificate is countersigned by a Chartered Electrical Safety Engineer (Reg 32(1) & Reg 45).',
+    recurrence: 'Periodic (Electrical Safety Officer inspection at intervals not exceeding 1 year; statutory inspection not exceeding 5 years)',
+    mode: 'FORM III (inspection report; self-certification certificate countersigned by Chartered Electrical Safety Engineer, submitted to Electrical Inspector)',
+    signingAuthority: 'Supplier / Owner / Consumer and Chartered Electrical Safety Engineer, or Electrical Inspector',
+    submissionAuthority: 'Electrical Inspector (State Electrical Inspectorate)',
+    timeline: 'Before commencement of supply and on periodic inspection',
+    dueDate: 'Before commencement of supply and after any shutdown of 6 months or more (Reg 45); ESO inspection at intervals not exceeding 1 year (Reg 5); statutory periodic inspection by Electrical Inspector not exceeding 5 years (Reg 32(2))',
+    alertDate: '30 days before the due inspection date',
+    link: 'https://drive.google.com/file/d/1ivuer584hif1sbK1fMTpd2im_lJTvnEX/view?usp=drivesdk',
+  },
+  {
+    id: 'cea-4',
+    form: 'FORM IV',
+    title: 'Inspection Report — electrical installations in a mine',
+    regulation: 'CEA 2023',
+    rule: 'CEA (Measures relating to Safety and Electric Supply) Regulations, 2023, sub-regulation (3) of Regulation 32, Schedule II',
+    details: 'Inspection report for electrical installations in a mine. Records mine and personnel details, illumination level, percentage of methane/other explosive gas, temperatures and air velocity, and compliance with Regulations 98–118 (annual return, plans, illumination, transformers/switchgear, earthing, supply voltages, cables, flexible cables, remote control, log-book in Schedule XI, haulage, electrical supervisors and training). Prepared by the Inspecting Officer; copy forwarded to the Electrical Inspector of mines.',
+    recurrence: 'Periodic (Electrical Safety Officer / Electrical Inspector of mines inspection at intervals not exceeding 1 year)',
+    mode: 'FORM IV (inspection report prepared by Inspecting Officer; copy forwarded to Electrical Inspector of mines)',
+    signingAuthority: 'Inspecting Officer (Electrical Inspector of mines)',
+    submissionAuthority: 'Electrical Inspector of mines',
+    timeline: 'On periodic inspection of the mine electrical installation',
+    dueDate: 'ESO inspection at intervals not exceeding 1 year (Reg 5); periodic statutory inspection of mine installations as directed by the Central Government (Reg 32(2) proviso)',
+    alertDate: '30 days before the due inspection date',
+    link: 'https://drive.google.com/file/d/1kGawyJY9Ykv5nXl0ZL_ywQ8d64gn6ZwY/view?usp=drivesdk',
+  },
+  {
+    id: 'cea-5',
+    form: 'SCHEDULE IX',
+    title: 'Form of Annual Return for Mines',
+    regulation: 'CEA 2023',
+    rule: 'CEA (Measures relating to Safety and Electric Supply) Regulations, 2023, sub-regulation (1) of Regulation 98',
+    details: 'Annual return for a mine giving the size and type of apparatus together with particulars of its use. Part A records mine identification (name, situation, owner, agent, manager, engineer, electrical supervisor); Part B records the system and voltage of supply, particulars of motors on surface and in the mine, ventilation and percentage of inflammable gas, and lighting. Sent to the Electrical Inspector of mines (Reg 98).',
+    recurrence: 'Annual',
+    mode: 'SCHEDULE IX (annual return submitted to Electrical Inspector of mines)',
+    signingAuthority: 'Owner / Agent / Manager / Engineer',
+    submissionAuthority: 'Electrical Inspector of mines',
+    timeline: 'On or before 1 February every year',
+    dueDate: 'On or before 1 February every year (Reg 98(1))',
+    alertDate: '1 January every year (about 30 days before the 1 February deadline)',
+    link: 'https://drive.google.com/file/d/1qzXhU2xMkVTeNy_IYjZ5GRG0eEMIXDXt/view?usp=drivesdk',
+  },
+  {
+    id: 'cea-6',
+    form: 'SCHEDULE XI',
+    title: 'Log Sheet for Mines and Oil-fields',
+    regulation: 'CEA 2023',
+    rule: 'CEA (Measures relating to Safety and Electric Supply) Regulations, 2023, sub-regulation (9) of Regulation 112 and sub-regulation (9) of Regulation 117',
+    details: 'Daily log sheet maintained by the Electrical Supervisor recording the condition of system insulation, specified insulation defects, accidents or dangerous occurrences (including electric shock and open sparking), disconnection/reconnection of supply, examination of earth-fault detectors/recorders (Reg 102(3)), and routine and special examinations of apparatus (Reg 117(9)). Examined and countersigned by the Engineer and the Manager.',
+    recurrence: 'Daily (continuous log)',
+    mode: 'SCHEDULE XI (daily log sheet maintained at the mine)',
+    signingAuthority: 'Electrical Supervisor; examined by Engineer and Manager',
+    submissionAuthority: 'Maintained at the mine for inspection by Electrical Inspector of mines',
+    timeline: 'Filled in daily by the Electrical Supervisor',
+    dueDate: 'Daily (each working day)',
+    alertDate: 'Daily reminder at the start of each working day',
+    link: 'https://drive.google.com/file/d/1jB1JjPp2wJo6iq82Tri7BzW-Hhjgb-Oa/view?usp=drivesdk',
+  },
 ];
 
 const REGULATIONS = [
