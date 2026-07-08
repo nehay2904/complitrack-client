@@ -94,7 +94,7 @@ function App() {
           <Route
             path="/dashboard/safety-committee"
             element={
-              <ProtectedRoute adminOnly>
+              <ProtectedRoute>
                 <UserDashboard />
               </ProtectedRoute>
             }
