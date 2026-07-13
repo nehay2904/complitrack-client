@@ -5,8 +5,8 @@ const documents = [
     color: 'blue',
   },
   {
-    title: 'CMR 2026 (Coal Mines Regulations, 2026)',
-    link: 'https://drive.google.com/file/d/1M_WNGtANCNd54cRgkVfqmtPAEprVTXnI/view?usp=sharing',
+    title: 'CMR 2017 (Coal Mines Regulations, 2017)',
+    link: 'https://drive.google.com/file/d/1NF9TpPqjyRkavmXML40i9iqnOtbkb9SF/view?usp=sharing',
     color: 'orange',
   },
   {
