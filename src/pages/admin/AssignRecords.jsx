@@ -127,7 +127,6 @@ const allRecords = [
   { id: '99', title: 'Medical Room / Ambulance Room Equipment Register (Annexure VI)', act: 'OSH Rules 2026', rule: 'Rule 63(ii) r/w Annexure VI', frequency: 'Maintained continuously; checked and replenished periodically', signing: 'Medical Officer; Manager' },
 ];
 
-export default allRecords;
 
 const AssignRecords = () => {
   const [users, setUsers] = useState([]);
