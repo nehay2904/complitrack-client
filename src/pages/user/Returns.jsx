@@ -2,34 +2,8 @@ import { useState } from 'react';
 
 const returns = [
   /* ================= COAL MINES REGULATIONS, 2017 ================= */
-  {
-    id: '1',
-    section: 'SECTION D: PERIODIC RETURNS',
-    title: 'Annual Returns (Mine)',
-    act: 'Coal Mines Regulations, 2017',
-    clause: 'Reg. 4(1), (2)',
-    detail: 'On or before 1st day of February in every year, the owner, agent or manager shall submit to the Chief Inspector, the Regional Inspector and to the District Magistrate annual returns in respect of the preceding year in the Form and method as may be specified by the Chief Inspector for the purpose.',
-    form: 'Form & method as specified by the Chief Inspector',
-    recurrence: 'Annual: On or before 1 February each year (for the preceding year)',
-    submissionAuthority: 'Chief Inspector; Regional Inspector; District Magistrate',
-    signingAuthority: 'Owner / Agent / Manager',
-    mode: 'Electronic / Physical',
-    remarks: 'Reg. 4(2): if abandoned/closed/discontinued for more than 60 days, or on change of ownership — return due within 30 days (or 90 days for discontinuance).',
-  },
-  {
-    id: '2',
-    section: 'SECTION D: PERIODIC RETURNS',
-    title: 'Monthly Stowing Statement',
-    act: 'Coal Mines Regulations, 2017',
-    clause: 'Reg. 112(9)',
-    detail: 'Where the voids formed as a result of extraction are stowed with sand or other materials, the owner, agent or manager shall, on or before the 10th day of every month submit to the Regional Inspector a statement giving the quantity of coal raised and the quantity of sand or other material stowed in every district during the preceding month.',
-    form: 'Statement (no prescribed form)',
-    recurrence: 'Monthly: On or before the 10th day of every month (for the preceding month)',
-    submissionAuthority: 'Regional Inspector',
-    signingAuthority: 'Owner / Agent / Manager',
-    mode: 'Physical / Electronic',
-    remarks: 'Applies only where sand stowing or other material stowing is practised (belowground). Not applicable to a purely opencast mine.',
-  },
+
+
  
   /* ================= OSH (CENTRAL) RULES, 2026 ================= */
   {

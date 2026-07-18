@@ -44,7 +44,7 @@ const notices = [
     remarks: 'This form applicable where contract labour / construction work is involved at opencast mine'
   },
   {
-     id: '36',
+     id: '4',
     section: 'SECTION C: SAFETY & HEALTH INCIDENT REPORTING',
     title: 'Register of Accidents and Dangerous Occurrences',
     act: 'OSH Rules 2026',
@@ -56,119 +56,12 @@ const notices = [
     signingAuthority: 'Manager',
     mode: 'Electronic or Manual',
     remarks: 'Notice of accident to CIFF/RIFF within 24 hrs (section 10 of Code); intimation of injury within 7 days'
-  },
-  {
-    id: '4',
-    section: 'SECTION A: ESTABLISHMENT REGISTRATION',
-    title: 'Notice of Opening',
-    act: 'Coal Mines Regulations, 2017',
-    clause: 'Reg. 3(1), (2), (3)',
-    detail: 'The notice for commencement of any mining operation under section 16 of the Act shall be submitted in the Form and method as may be specified by the Chief Inspector, accompanied by a plan showing the boundaries of the mine, to the Chief Inspector and a copy thereof to the Regional Inspector. On opening, the actual date of opening shall forthwith be communicated.',
-    form: 'Form & method as specified by the Chief Inspector',
-    recurrence: 'Event-based: Before commencement; actual date communicated forthwith on opening',
-    submissionAuthority: 'Chief Inspector; Regional Inspector (copy); District Magistrate (date of opening)',
-    signingAuthority: 'Owner / Agent / Manager',
-    mode: 'Electronic / Physical',
-    remarks: 'Boundary-change plan to be submitted within 7 days (regs 121/122).'
-  },
-  {
-    id: '5',
-    section: 'SECTION A: ESTABLISHMENT REGISTRATION',
-    title: 'Notice of Abandonment, Closure or Discontinuance',
-    act: 'Coal Mines Regulations, 2017',
-    clause: 'Reg. 5(1), (2), (3)',
-    detail: 'When it is intended to abandon or close a mine or seam or to discontinue workings thereof for a period exceeding sixty days, the owner, agent or manager shall give a notice stating the reasons and the number of persons likely to be affected thereby, not less than thirty days before such abandonment or discontinuance.',
-    form: 'Form & method as specified by the Chief Inspector',
-    recurrence: 'Event-based: Not less than 30 days before (or forthwith if unforeseen); follow-up notice within 7 days',
-    submissionAuthority: 'Chief Inspector; Regional Inspector; District Magistrate',
-    signingAuthority: 'Owner / Agent / Manager',
-    mode: 'Electronic / Physical',
-    remarks: 'Reg. 5(2): additional notice required where Govt./railway/structure overlies the working.'
-  },
-  {
-    id: '6',
-    section: 'SECTION A: ESTABLISHMENT REGISTRATION',
-    title: 'Notice of Reopening',
-    act: 'Coal Mines Regulations, 2017',
-    clause: 'Reg. 6(1), (2)',
-    detail: 'When it is intended to reopen a mine or seam after abandonment, closure or discontinuance for a period exceeding sixty days, the owner, agent or manager shall, not less than thirty days before resumption of mining operations, give notice. The actual date of reopening is to be communicated forthwith.',
-    form: 'Form & method as specified by the Chief Inspector',
-    recurrence: 'Event-based: Not less than 30 days before resumption; actual date communicated forthwith',
-    submissionAuthority: 'Chief Inspector; Regional Inspector; District Magistrate',
-    signingAuthority: 'Owner / Agent / Manager',
-    mode: 'Electronic / Physical',
-    remarks: 'Event-based.'
-  },
-  {
-    id: '7',
-    section: 'SECTION B: MANAGEMENT & PERSONNEL NOTIFICATIONS',
-    title: 'Notice of Change in Ownership / Appointment of Agent, Manager, etc.',
-    act: 'Coal Mines Regulations, 2017',
-    clause: 'Reg. 7(1), (3), (7)',
-    detail: 'When a change occurs in the name or ownership of a mine or in the address of the owner, the owner, agent or manager shall, within seven days from the date of the change, give a notice. This also applies on appointment or termination of agent, manager, engineer, surveyor, ventilation/safety officer or assistant manager, and on changes to the authorised-persons statement.',
-    form: 'Form & method as specified by the Chief Inspector',
-    recurrence: 'Event-based: Within 7 days of the change / appointment / termination',
-    submissionAuthority: 'Chief Inspector; Regional Inspector',
-    signingAuthority: 'Owner / Agent / Manager',
-    mode: 'Electronic / Physical',
-    remarks: 'Reg. 7(2): on transfer, all plans, reports, registers & records handed to new owner; both inform CI/RI in writing.'
-  },
-  {
-    id: '8',
-    section: 'SECTION B: MANAGEMENT & PERSONNEL NOTIFICATIONS',
-    title: 'Statement of Persons Authorised to Act for the Owner',
-    act: 'Coal Mines Regulations, 2017',
-    clause: 'Reg. 7(4), (5), (6)',
-    detail: "The owner of a mine shall submit in writing to the Chief Inspector and the Regional Inspector a statement showing the name and designation of every person authorised to act on behalf of the owner in respect of management, control, supervision or direction of the mine, stating each person's responsibilities.",
-    form: 'Written statement (no prescribed form)',
-    recurrence: 'Event-based: On authorisation; updated within 7 days of any change',
-    submissionAuthority: 'Chief Inspector; Regional Inspector',
-    signingAuthority: 'Owner',
-    mode: 'Physical (written statement)',
-    remarks: "Defines who is an 'agent' for the mine."
-  },
-  {
-    id: '9',
-    section: 'SECTION C: SAFETY & HEALTH INCIDENT REPORTING',
-    title: 'Notice of Dangerous Occurrence or Accident',
-    act: 'Coal Mines Regulations, 2017',
-    clause: 'Reg. 8(1), (2), (3), (4), (5)',
-    detail: 'The owner, agent or manager shall forthwith inform the Regional Inspector about the occurrence by telephone, fax, e-mail or special messenger, and shall also, within twenty-four hours of every such occurrence, give notice thereof. A copy is to be exhibited on the mine notice board for not less than 14 days; electrical cases are also reported to the Inspector of Mines (Electrical); a death follow-up is required within 24 hours; and particulars of killed/injured persons are submitted within 7 days and within 15 days of return to duty.',
-    form: 'Form & method as specified by the Chief Inspector',
-    recurrence: 'Event-based: Forthwith, then within 24 hours; particulars within 7 days and 15 days',
-    submissionAuthority: 'Regional Inspector (forthwith); District Magistrate; Chief Inspector; Competent Authority (loss-of-life cases); Inspector of Mines (Electrical) for electrical cases',
-    signingAuthority: 'Owner / Agent / Manager',
-    mode: 'Telephone / Fax / E-mail / Special messenger, followed by formal written notice',
-    remarks: "Defines 19 categories of 'dangerous occurrence' in 8(1)(b)."
-  },
-  {
-    id: '10',
-    section: 'SECTION C: SAFETY & HEALTH INCIDENT REPORTING',
-    title: 'Notice of Disease',
-    act: 'Coal Mines Regulations, 2017',
-    clause: 'Reg. 9',
-    detail: 'Where any person employed in a mine contracts any disease notified by the Central Government under section 25 of the Act, the owner, agent or manager shall, within three days of being informed of the disease, give notice thereof.',
-    form: 'Form & method as specified by the Chief Inspector',
-    recurrence: 'Event-based: Within 3 days of being informed',
-    submissionAuthority: 'Chief Inspector; Regional Inspector; Inspector of Mines (Medical); District Magistrate; Competent Authority',
-    signingAuthority: 'Owner / Agent / Manager',
-    mode: 'Electronic / Physical',
-    remarks: 'Notifiable diseases under Sec. 25.'
-  },
-  {
-    id: '11',
-    section: 'SECTION B: MANAGEMENT & PERSONNEL NOTIFICATIONS',
-    title: 'Charge Report of Managers (Change of Manager)',
-    act: 'Coal Mines Regulations, 2017',
-    clause: 'Reg. 28',
-    detail: 'When there is a change of manager of any mine, the outgoing manager shall hand over to the incoming manager a charge report, signed by both the outgoing and incoming managers, with a copy sent to the Regional Inspector.',
-    form: 'Charge report (format specified by Chief Inspector)',
-    recurrence: 'Event-based: On every change of manager',
-    submissionAuthority: 'Regional Inspector (copy)',
-    signingAuthority: 'Outgoing Manager / Incoming Manager (both sign)',
-    mode: 'Physical (signed charge report)',
-    remarks: 'Event-based handover.'
   }
+ 
+
+
+
+
  
  
 ];

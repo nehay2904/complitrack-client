@@ -14,7 +14,14 @@ const statusStyles = {
   Overdue: "bg-red-100 text-red-700 border-red-300",
 };
 
-const emptyMeetingForm = { month: "", meetingDate: "", chairperson: "" };
+const emptyMeetingForm = {
+  month: "",
+  meetingDate: "",
+  chairperson: "",
+  attendanceLink: "",
+  momLink: "",
+  actionTakenLink: "",
+};
 const emptyObsForm = {
   description: "",
   location: "",
@@ -33,6 +40,14 @@ const obsStatus = (obs, today) => {
   if (!isNaN(target) && today > target) return "Overdue";
   return "Pending";
 };
+
+// The 3 documents attached to every meeting, shown as view links in the
+// detail panel and as inputs in the schedule-meeting form.
+const documentFields = [
+  { key: "attendanceLink", label: "Attendance" },
+  { key: "momLink", label: "Minutes of Meeting" },
+  { key: "actionTakenLink", label: "Previous Month Action Taken" },
+];
 
 const SafetyCommittee = () => {
   const [meetings, setMeetings] = useState([]);
@@ -132,7 +147,7 @@ const SafetyCommittee = () => {
             Monthly meetings, observations and corrective action
           </p>
         </div>
-      
+       
       </div>
 
       {/* Meeting cards */}
@@ -189,64 +204,32 @@ const SafetyCommittee = () => {
            
           </div>
 
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="text-left text-gray-500 text-xs border-b border-gray-200">
-                  <th className="pb-2 pr-3">Observation</th>
-                  <th className="pb-2 pr-3">Location</th>
-                  <th className="pb-2 pr-3">Severity</th>
-                  <th className="pb-2 pr-3">Assigned to</th>
-                  <th className="pb-2 pr-3">Target date</th>
-                  <th className="pb-2 pr-3">Status</th>
-                  <th className="pb-2">Action / solution</th>
-                </tr>
-              </thead>
-              <tbody>
-                {selected.observations.length === 0 ? (
-                  <tr>
-                    <td colSpan={7} className="py-8 text-center text-gray-400">
-                      No observations logged for this meeting yet
-                    </td>
-                  </tr>
+          {/* Attendance / MOM / Previous action taken documents */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-5">
+            {documentFields.map((f) => (
+              <div
+                key={f.key}
+                className="flex items-center justify-between border border-gray-200 rounded-lg px-3 py-2"
+              >
+                <span className="text-xs text-gray-600">{f.label}</span>
+                {selected[f.key] ? (
+                  <a
+                    href={selected[f.key]}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs font-medium text-amber-600 hover:underline"
+                  >
+                    View
+                  </a>
                 ) : (
-                  selected.observations.map((obs) => {
-                    const st = obsStatus(obs, today);
-                    return (
-                      <tr key={obs._id} className="border-b border-gray-100 align-top">
-                        <td className="py-3 pr-3 max-w-xs">{obs.description}</td>
-                        <td className="py-3 pr-3 text-gray-600">{obs.location}</td>
-                        <td className="py-3 pr-3">
-                          <span
-                            className={`px-2 py-0.5 rounded-full text-xs font-medium border ${severityColors[obs.severity]}`}
-                          >
-                            {obs.severity}
-                          </span>
-                        </td>
-                        <td className="py-3 pr-3 text-gray-600">
-                          {obs.assignedTo?.name || "—"}
-                        </td>
-                        <td className="py-3 pr-3 text-gray-600">
-                          {obs.targetDate
-                            ? new Date(obs.targetDate).toLocaleDateString()
-                            : "—"}
-                        </td>
-                        <td className="py-3 pr-3">
-                          <span
-                            className={`px-2 py-0.5 rounded-full text-xs font-medium border ${statusStyles[st]}`}
-                          >
-                            {st}
-                          </span>
-                        </td>
-                        <td className="py-3 min-w-[180px] text-gray-600 text-xs">
-                          {obs.solution || "—"}
-                        </td>
-                      </tr>
-                    );
-                  })
+                  <span className="text-xs text-gray-300">Not uploaded</span>
                 )}
-              </tbody>
-            </table>
+              </div>
+            ))}
+          </div>
+
+          <div className="overflow-x-auto">
+       
           </div>
 
           {summary && selected.observations.length > 0 && (
@@ -304,6 +287,37 @@ const SafetyCommittee = () => {
               }
               className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm"
             />
+
+            <div className="pt-2 border-t border-gray-100">
+              <p className="text-xs text-gray-500 mb-2">
+                Document links (Drive link, optional)
+              </p>
+              <input
+                placeholder="Attendance sheet link"
+                value={meetingForm.attendanceLink}
+                onChange={(e) =>
+                  setMeetingForm({ ...meetingForm, attendanceLink: e.target.value })
+                }
+                className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm mb-2"
+              />
+              <input
+                placeholder="Minutes of meeting link"
+                value={meetingForm.momLink}
+                onChange={(e) =>
+                  setMeetingForm({ ...meetingForm, momLink: e.target.value })
+                }
+                className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm mb-2"
+              />
+              <input
+                placeholder="Previous month action taken link"
+                value={meetingForm.actionTakenLink}
+                onChange={(e) =>
+                  setMeetingForm({ ...meetingForm, actionTakenLink: e.target.value })
+                }
+                className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm"
+              />
+            </div>
+
             <div className="flex justify-end gap-2 pt-2">
               <button
                 type="button"
@@ -323,83 +337,7 @@ const SafetyCommittee = () => {
         </div>
       )}
 
-      {/* Add observation modal */}
-      {showObsForm && (
-        <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50 p-4">
-          <form
-            onSubmit={addObservation}
-            className="bg-white rounded-xl p-6 w-full max-w-md space-y-3"
-          >
-            <h3 className="font-semibold text-gray-800 mb-2">Add observation</h3>
-            <textarea
-              required
-              placeholder="Observation description"
-              value={obsForm.description}
-              onChange={(e) => setObsForm({ ...obsForm, description: e.target.value })}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm"
-              rows={2}
-            />
-            <div className="grid grid-cols-2 gap-3">
-              <input
-                placeholder="Location"
-                value={obsForm.location}
-                onChange={(e) => setObsForm({ ...obsForm, location: e.target.value })}
-                className="border border-gray-300 rounded-lg px-3 py-2 text-sm"
-              />
-              <select
-                value={obsForm.severity}
-                onChange={(e) => setObsForm({ ...obsForm, severity: e.target.value })}
-                className="border border-gray-300 rounded-lg px-3 py-2 text-sm"
-              >
-                <option>High</option>
-                <option>Medium</option>
-                <option>Low</option>
-              </select>
-              <select
-                required
-                value={obsForm.assignedTo}
-                onChange={(e) => setObsForm({ ...obsForm, assignedTo: e.target.value })}
-                className="border border-gray-300 rounded-lg px-3 py-2 text-sm"
-              >
-                <option value="">Assign to...</option>
-                {users.map((u) => (
-                  <option key={u._id} value={u._id}>
-                    {u.name}
-                  </option>
-                ))}
-              </select>
-              <input
-                required
-                type="date"
-                value={obsForm.targetDate}
-                onChange={(e) => setObsForm({ ...obsForm, targetDate: e.target.value })}
-                className="border border-gray-300 rounded-lg px-3 py-2 text-sm"
-              />
-            </div>
-            <input
-              placeholder="Raised by (safety officer)"
-              value={obsForm.raisedBy}
-              onChange={(e) => setObsForm({ ...obsForm, raisedBy: e.target.value })}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm"
-            />
-            <div className="flex justify-end gap-2 pt-2">
-              <button
-                type="button"
-                onClick={() => setShowObsForm(false)}
-                className="px-3 py-2 text-sm text-gray-600"
-              >
-                Cancel
-              </button>
-              <button
-                type="submit"
-                className="px-4 py-2 bg-gray-800 text-white text-sm font-semibold rounded-lg"
-              >
-                Add
-              </button>
-            </div>
-          </form>
-        </div>
-      )}
+     
     </div>
   );
 };
