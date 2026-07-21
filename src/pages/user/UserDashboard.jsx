@@ -3,32 +3,36 @@ import { useNavigate, useLocation } from "react-router-dom";
 import API from "../../api/axios";
 import { useAuth } from "../../context/AuthContext";
 import toast from "react-hot-toast";
-import Notices from "./Notices";
-import Returns from "./Returns";
 import Forms from "./Forms";
-import Records from "./Records";
 import jindalLogo from "../../assets/jindal-logo.png";
 import MyRecords from "./MyRecords";
 import RulesRegulations from "./RulesRegulations";
 import InternalMineDocuments from "./Internal Mine Documents";
 import SafetyCommittee from "./SafetyCommittee";
+import MineCompliances from "./MineCompliances";
+
+const GREEN = "#0F5132";
+const GREEN_DARK = "#0A3D25";
 
 const statusColors = {
   Pending: "bg-amber-500 text-white border-amber-600",
   Completed: "bg-green-600 text-white border-green-700",
 };
 
+const Ico = ({ children }) => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+    strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">{children}</svg>
+);
+
 // Sidebar nav config — add/remove tabs here only, markup below reads from this list
 const NAV_ITEMS = [
-  { key: "tasks", label: "My Tasks", icon: "📋" },
-  { key: "myrecords", label: "Update my Records", icon: "🗂" },
-   { key: "safety-committee", label: "Safety Committee", icon: "🦺", isNew: true },
-  { key: "rules", label: "Rules & Regulations", icon: "📜" },
-  { key: "notices", label: "Notices", icon: "📢" },
-  { key: "returns", label: "Returns", icon: "📊" },
-  { key: "forms", label: "Forms", icon: "📄" },
-  { key: "records", label: "Statutory Records", icon: "🗂" },
-   { key: "internal-mine-documents", label: "COPs/SOPs", icon: "📄" },
+  { key: "tasks", label: "My Compliances", icon: <Ico><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" /><path d="m9 12 2 2 4-4" /></Ico> },
+  { key: "myrecords", label: "My Submissions", icon: <Ico><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z" /><path d="M14 2v5h5" /><path d="M12 18v-6" /><path d="m9 15 3 3 3-3" /></Ico> },
+  { key: "mines", label: "Mine Compliances", icon: <Ico><path d="m3 11 18-5v12L3 14v-3z" /><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6" /><path d="M8 8v6" /></Ico> },
+  { key: "safety-committee", label: "Safety Committee", icon: <Ico><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /><path d="M9 12l2 2 4-4" /></Ico>, isNew: true },
+  { key: "rules", label: "Acts & Regulations", icon: <Ico><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" /><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" /></Ico> },
+  { key: "forms", label: "Statutory Forms", icon: <Ico><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z" /><path d="M14 2v5h5" /><path d="M9 13h6" /><path d="M9 17h6" /></Ico> },
+  { key: "internal-mine-documents", label: "COPs & SOPs", icon: <Ico><path d="M4 4a2 2 0 0 1 2-2h9l5 5v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z" /><path d="M14 2v5h5" /></Ico> },
 ];
 
 const UserDashboard = () => {
@@ -104,6 +108,11 @@ const UserDashboard = () => {
   };
 
   const goToTab = (key) => {
+    // "mines" has no route — switch in place so the router doesn't bounce to login
+    if (key === "mines") {
+      setActiveTab("mines");
+      return;
+    }
     navigate(key === "tasks" ? "/dashboard" : `/dashboard/${key}`);
   };
 
@@ -129,6 +138,14 @@ const UserDashboard = () => {
     return true;
   });
 
+  // KPI cards — click to filter. Colors keyed to meaning.
+  const KPIS = [
+    { key: "all", label: "Total", value: counts.all, ring: "ring-gray-200", text: "text-gray-800", dot: "bg-gray-400" },
+    { key: "pending", label: "Pending", value: counts.pending, ring: "ring-amber-200", text: "text-amber-600", dot: "bg-amber-500" },
+    { key: "completed", label: "Completed", value: counts.completed, ring: "ring-green-200", text: "text-green-700", dot: "bg-green-600" },
+    { key: "overdue", label: "Overdue", value: counts.overdue, ring: "ring-red-200", text: "text-red-600", dot: "bg-red-500" },
+  ];
+
   if (loading)
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
@@ -139,160 +156,114 @@ const UserDashboard = () => {
   return (
     <div className="min-h-screen flex bg-gray-50">
       {/* Sidebar */}
-   <aside className="w-64 bg-green-900 text-white flex flex-col sticky top-0 h-screen shrink-0">
-  <div className="flex items-center gap-3 px-5 py-5 border-b border-green-800">
-    <img
-      src={jindalLogo}
-      alt="Jindal Power"
-      className="w-9 h-9 object-contain"
-    />
-    <div>
-      <h1 className="font-semibold leading-none">CompliTrack</h1>
-      <p className="text-green-300 text-xs mt-1">JPL Mines</p>
-    </div>
-  </div>
+      <aside className="w-64 text-white flex flex-col sticky top-0 h-screen shrink-0"
+        style={{ background: `linear-gradient(180deg, ${GREEN} 0%, ${GREEN_DARK} 100%)` }}>
+        <div className="flex items-center gap-3 px-5 py-5 border-b border-white/10">
+          <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center shrink-0 shadow-sm">
+            <img src={jindalLogo} alt="Jindal Power" className="w-7 h-7 object-contain" />
+          </div>
+          <div>
+            <h1 className="font-semibold leading-none">CompliTrack</h1>
+            <p className="text-green-300 text-xs mt-1">JPL Mines</p>
+          </div>
+        </div>
 
-  <nav className="flex-1 overflow-y-auto py-3 px-2 space-y-1">
-    {NAV_ITEMS.map((tab) => (
-      <button
-        key={tab.key}
-        onClick={() => goToTab(tab.key)}
-        className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition ${
-          activeTab === tab.key
-            ? "bg-green-800 text-white border-l-4 border-amber-500 pl-2"
-            : "text-green-100 hover:bg-green-800/60 hover:text-white"
-        }`}
-      >
-        <span>{tab.icon}</span>
-        <span className="flex-1 text-left">{tab.label}</span>
-        {tab.key === "tasks" && counts.pending + counts.overdue > 0 && (
-          <span className="inline-flex items-center justify-center min-w-[20px] h-5 px-1.5 bg-red-600 text-white text-xs font-bold rounded-full">
-            {counts.pending + counts.overdue}
-          </span>
-        )}
-        {tab.isNew && (
-          <span className="px-1.5 py-0.5 bg-amber-500/20 text-amber-400 text-[10px] font-bold rounded">
-            NEW
-          </span>
-        )}
-      </button>
-    ))}
-  </nav>
+        <nav className="flex-1 overflow-y-auto py-3 px-2 space-y-1">
+          {NAV_ITEMS.map((tab) => (
+            <button
+              key={tab.key}
+              onClick={() => goToTab(tab.key)}
+              className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition ${
+                activeTab === tab.key
+                  ? "bg-white/15 text-white border-l-4 border-amber-400 pl-2"
+                  : "text-green-100 hover:bg-white/10 hover:text-white"
+              }`}
+            >
+              <span className="shrink-0">{tab.icon}</span>
+              <span className="flex-1 text-left">{tab.label}</span>
+              {tab.key === "tasks" && counts.pending + counts.overdue > 0 && (
+                <span className="inline-flex items-center justify-center min-w-[20px] h-5 px-1.5 bg-red-600 text-white text-xs font-bold rounded-full">
+                  {counts.pending + counts.overdue}
+                </span>
+              )}
+              {tab.isNew && (
+                <span className="px-1.5 py-0.5 bg-amber-400/20 text-amber-300 text-[10px] font-bold rounded">
+                  NEW
+                </span>
+              )}
+            </button>
+          ))}
+        </nav>
 
-  <div className="border-t border-green-800 px-5 py-4">
-    <div className="flex items-center gap-3 mb-3">
-      <div className="w-9 h-9 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-sm shrink-0">
-        {user?.name?.charAt(0)}
-      </div>
-      <div className="min-w-0">
-        <p className="text-sm font-medium truncate">{user?.name}</p>
-        <p className="text-green-300 text-xs truncate">{user?.dept}</p>
-      </div>
-    </div>
-    <button
-      onClick={handleLogout}
-      className="w-full px-3 py-2 bg-green-800 hover:bg-red-600 text-green-100 text-sm rounded-lg transition"
-    >
-      Logout
-    </button>
-  </div>
-</aside>
+        <div className="border-t border-white/10 px-5 py-4">
+          <div className="flex items-center gap-3 mb-3">
+            <div className="w-9 h-9 bg-amber-500 rounded-full flex items-center justify-center text-white font-bold text-sm shrink-0">
+              {user?.name?.charAt(0)}
+            </div>
+            <div className="min-w-0">
+              <p className="text-sm font-medium truncate">{user?.name}</p>
+              <p className="text-green-300 text-xs truncate">{user?.dept}</p>
+            </div>
+          </div>
+          <button
+            onClick={handleLogout}
+            className="w-full px-3 py-2 bg-white/10 hover:bg-red-600 text-green-100 hover:text-white text-sm rounded-lg transition"
+          >
+            Logout
+          </button>
+        </div>
+      </aside>
 
       {/* Main content */}
       <main className="flex-1 p-8 overflow-y-auto">
         {activeTab === "tasks" && (
           <>
-            <h2 className="text-2xl font-normal text-gray-800 mb-1">
+            <h2 className="text-2xl font-semibold text-gray-800 mb-1">
               Welcome, {user?.name} 👋
             </h2>
             <p className="text-gray-500 text-sm mb-6">
-              Your assigned compliance tasks
+              Your assigned statutory compliances
             </p>
+
+            {/* KPI cards — click to filter */}
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+              {KPIS.map((k) => {
+                const active = filter === k.key;
+                return (
+                  <button
+                    key={k.key}
+                    onClick={() => setFilter(k.key)}
+                    className={`text-left bg-white rounded-2xl p-5 border transition shadow-sm hover:shadow-md ${
+                      active ? `ring-2 ${k.ring} border-transparent` : "border-gray-200"
+                    }`}
+                  >
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className={`w-2 h-2 rounded-full ${k.dot}`} />
+                      <span className="text-gray-500 text-xs font-medium uppercase tracking-wide">
+                        {k.label}
+                      </span>
+                    </div>
+                    <p className={`text-3xl font-bold tabular-nums ${k.text}`}>{k.value}</p>
+                  </button>
+                );
+              })}
+            </div>
 
             <div className="space-y-3">
               {filtered.length === 0 ? (
-                <div className="text-center text-black-400 py-20 bg-white rounded-xl border border-gray-200">
-                  No tasks found
+                <div className="text-center text-gray-400 py-20 bg-white rounded-xl border border-gray-200">
+                  No compliances found
                 </div>
               ) : (
-                filtered.map((c) => {
-                  const due = new Date(c.dueDate);
-                  const isOverdue =
-                    !isNaN(due) && today > due && c.status !== "Completed";
-                  return (
-                    <div
-                      key={c._id}
-                      className={`bg-white rounded-xl border-2 p-5 shadow-sm ${isOverdue ? "border-l-4 border-l-red-600 border-red-300" : c.status === "Completed" ? "border-l-4 border-l-green-600 border-green-300" : "border-gray-300"}`}
-                    >
-                      <div className="flex items-start justify-between gap-4">
-                        <div className="flex-1">
-                          <div className="flex items-center gap-2 mb-2 flex-wrap">
-                            <span className="text-blue-600 font-mono text-xs font-bold">
-                              {c.complianceId}
-                            </span>
-                            <span
-                              className={`px-2 py-0.5 rounded-full text-xs font-medium border ${statusColors[c.status]}`}
-                            >
-                              {c.status}
-                            </span>
-                            {isOverdue && (
-                              <span className="text-red-600 text-xs font-bold">
-                                OVERDUE
-                              </span>
-                            )}
-                          </div>
-                          <h3 className="text-black-800 font-medium mb-1">
-                            {c.title}
-                          </h3>
-                          {c.detail && (
-                            <p className="text-black-500 text-xs mb-2 line-clamp-2">
-                              {c.detail}
-                            </p>
-                          )}
-                          <div className="flex flex-wrap gap-3 text-xs text-black-600 mt-2">
-                            {c.dueDate && <span>📅 Due: {c.dueDate}</span>}
-                            {c.alertDate && (
-                              <span>🔔 Alert: {c.alertDate}</span>
-                            )}
-                            {c.recurrence && <span>🔁 {c.recurrence}</span>}
-                            {c.submissionAuthority && (
-                              <span>🏛 {c.submissionAuthority}</span>
-                            )}
-                            {c.driveLink && (
-                              <span
-                                onClick={() => window.open(c.driveLink, "_blank")}
-                                className="text-blue-600 hover:underline font-medium cursor-pointer"
-                              >
-                                📎 View Document
-                              </span>
-                            )}
-                          </div>
-                        </div>
-                        <div className="flex flex-col gap-2 min-w-fit">
-                          {c.status !== "Completed" && (
-                            <button
-                              onClick={() => updateStatus(c._id, "Completed")}
-                              className="px-3 py-2 bg-green-600 hover:bg-green-700 text-white text-xs font-semibold rounded-lg transition whitespace-nowrap shadow-sm"
-                            >
-                              Mark Done ✓
-                            </button>
-                          )}
-                          {c.status === "Completed" && (
-                            <span className="px-3 py-2 bg-green-50 text-green-700 border border-green-300 text-xs rounded-lg text-center font-medium">
-                              ✅ Completed
-                            </span>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })
+                filtered.map((c) => (
+                  <ComplianceCard key={c._id} c={c} today={today} onDone={updateStatus} />
+                ))
               )}
             </div>
 
             {mySafetyTasks.length > 0 && (
               <div className="mt-8">
-                <h3 className="text-lg font-normal text-gray-800 mb-1">
+                <h3 className="text-lg font-semibold text-gray-800 mb-1">
                   My Safety Committee Tasks
                 </h3>
                 <p className="text-gray-500 text-sm mb-3">
@@ -311,15 +282,67 @@ const UserDashboard = () => {
             )}
           </>
         )}
+        {activeTab === "mines" && <MineCompliances />}
         {activeTab === "internal-mine-documents" && <InternalMineDocuments />}
         {activeTab === "rules" && <RulesRegulations />}
-        {activeTab === "notices" && <Notices />}
-        {activeTab === "returns" && <Returns />}
         {activeTab === "forms" && <Forms />}
-        {activeTab === "records" && <Records />}
         {activeTab === "myrecords" && <MyRecords />}
         {activeTab === "safety-committee" && <SafetyCommittee />}
       </main>
+    </div>
+  );
+};
+
+// Shared compliance card — used by the My Compliances (tasks) tab
+const ComplianceCard = ({ c, today, onDone }) => {
+  const due = new Date(c.dueDate);
+  const isOverdue = !isNaN(due) && today > due && c.status !== "Completed";
+  return (
+    <div
+      className={`bg-white rounded-xl border-2 p-5 shadow-sm ${isOverdue ? "border-l-4 border-l-red-600 border-red-300" : c.status === "Completed" ? "border-l-4 border-l-green-600 border-green-300" : "border-gray-300"}`}
+    >
+      <div className="flex items-start justify-between gap-4">
+        <div className="flex-1">
+          <div className="flex items-center gap-2 mb-2 flex-wrap">
+            <span className="text-green-700 font-mono text-xs font-bold">{c.complianceId}</span>
+            <span className={`px-2 py-0.5 rounded-full text-xs font-medium border ${statusColors[c.status]}`}>
+              {c.status}
+            </span>
+            {isOverdue && <span className="text-red-600 text-xs font-bold">OVERDUE</span>}
+          </div>
+          <h3 className="text-gray-800 font-medium mb-1">{c.title}</h3>
+          {c.detail && <p className="text-gray-500 text-xs mb-2 line-clamp-2">{c.detail}</p>}
+          <div className="flex flex-wrap gap-3 text-xs text-gray-600 mt-2">
+            {c.dueDate && <span>📅 Due: {c.dueDate}</span>}
+            {c.alertDate && <span>🔔 Alert: {c.alertDate}</span>}
+            {c.recurrence && <span>🔁 {c.recurrence}</span>}
+            {c.submissionAuthority && <span>🏛 {c.submissionAuthority}</span>}
+            {c.driveLink && (
+              <span
+                onClick={() => window.open(c.driveLink, "_blank")}
+                className="text-green-700 hover:underline font-medium cursor-pointer"
+              >
+                📎 View Document
+              </span>
+            )}
+          </div>
+        </div>
+        <div className="flex flex-col gap-2 min-w-fit">
+          {c.status !== "Completed" && (
+            <button
+              onClick={() => onDone(c._id, "Completed")}
+              className="px-3 py-2 bg-green-600 hover:bg-green-700 text-white text-xs font-semibold rounded-lg transition whitespace-nowrap shadow-sm"
+            >
+              Mark Done ✓
+            </button>
+          )}
+          {c.status === "Completed" && (
+            <span className="px-3 py-2 bg-green-50 text-green-700 border border-green-300 text-xs rounded-lg text-center font-medium">
+              ✅ Completed
+            </span>
+          )}
+        </div>
+      </div>
     </div>
   );
 };
@@ -335,8 +358,7 @@ const SafetyTaskCard = ({ task, onSubmit }) => {
   const [solution, setSolution] = useState(task.solution || "");
   const today = new Date();
   const target = new Date(task.targetDate);
-  const isOverdue =
-    task.status !== "Closed" && !isNaN(target) && today > target;
+  const isOverdue = task.status !== "Closed" && !isNaN(target) && today > target;
 
   return (
     <div
@@ -351,25 +373,15 @@ const SafetyTaskCard = ({ task, onSubmit }) => {
       <div className="flex items-start justify-between gap-4">
         <div className="flex-1">
           <div className="flex items-center gap-2 mb-2 flex-wrap">
-            <span className="text-blue-600 font-mono text-xs font-bold">
-              {task.month}
-            </span>
-            <span
-              className={`px-2 py-0.5 rounded-full text-xs font-medium border ${safetySeverityColors[task.severity]}`}
-            >
+            <span className="text-green-700 font-mono text-xs font-bold">{task.month}</span>
+            <span className={`px-2 py-0.5 rounded-full text-xs font-medium border ${safetySeverityColors[task.severity]}`}>
               {task.severity}
             </span>
-            {isOverdue && (
-              <span className="text-red-600 text-xs font-bold">OVERDUE</span>
-            )}
-            {task.status === "Closed" && (
-              <span className="text-green-600 text-xs font-bold">CLOSED</span>
-            )}
+            {isOverdue && <span className="text-red-600 text-xs font-bold">OVERDUE</span>}
+            {task.status === "Closed" && <span className="text-green-600 text-xs font-bold">CLOSED</span>}
           </div>
-          <h3 className="text-black-800 font-medium mb-1">
-            {task.description}
-          </h3>
-          <div className="flex flex-wrap gap-3 text-xs text-black-600 mt-2">
+          <h3 className="text-gray-800 font-medium mb-1">{task.description}</h3>
+          <div className="flex flex-wrap gap-3 text-xs text-gray-600 mt-2">
             {task.location && <span>📍 {task.location}</span>}
             {task.targetDate && (
               <span>📅 Target: {new Date(task.targetDate).toLocaleDateString()}</span>
