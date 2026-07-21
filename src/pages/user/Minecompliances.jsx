@@ -1,17 +1,5 @@
 import { useState } from "react";
 
-// ─────────────────────────────────────────────────────────────────────────────
-// Mine Compliances — 5 regulatory authorities, each split into Notices / Returns
-// / Records. Data mapped from the JPL portal registers:
-//   DGMS  ← OSH Rules 2026 + Coal Mines Regulations 2017 (safety)
-//   PESO  ← Explosives Rules 2008
-//   CEA   ← CER / CEA (Safety & Electric Supply) Regulations 2023
-//   Environment ← EP Act framework (EIA 2006, EP Rules, HOWM 2016, CGWA, etc.)
-//   Labour ← Labour Codes (Wages 2019, OSH 2020, Social Security 2020)
-// Applicability analysed for GP IV/2&3, GP IV/1 (working OC) and Banai-Banamunda,
-// GP Sector-I (greenfield, GR approved). Mines Act 1952 / Mines Rules 1955 excluded
-// (repealed); OSH Rules 2026 in force.
-// ─────────────────────────────────────────────────────────────────────────────
 const DATA = {
   "dgms": {
     "label": "DGMS",
