@@ -1469,7 +1469,7 @@ const DATA = {
       ]
     }
   }, 
-  "ug": {
+  "Underground mining": {
   "label": "Underground Mining",
   "color": "#334155",
   "icon": "<path d=\"M4 15a8 8 0 0 1 16 0\" /><path d=\"M2 15h20\" /><circle cx=\"12\" cy=\"9\" r=\"1.6\" /><path d=\"M12 9v-2\" />",
@@ -1849,7 +1849,7 @@ const DATA = {
 
 };
 // 
-const AUTH_ORDER = ["dgms", "peso", "cea", "environment", "labour", "hr"];
+const AUTH_ORDER = ["dgms", "peso", "cea", "environment", "labour", "hr", "Underground mining"];
 const SUBS = [
   { key: "Notice", label: "Notices", accent: "#1D4ED8" },
   { key: "Return", label: "Returns", accent: "#B45309" },

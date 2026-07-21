@@ -1,4 +1,21 @@
 const documents = [
+  // https://drive.google.com/file/d/1QG9oSWZ0bbah6g6OdsH6nuVqiUs4OUv2/view?usp=sharing
+    {
+    title: 'Mines and Minerals Development and Regulation Act 1957',
+    link: 'https://drive.google.com/file/d/1QG9oSWZ0bbah6g6OdsH6nuVqiUs4OUv2/view?usp=sharing',
+    color: 'purple',
+  },
+      {
+    title: 'Environment Protection Act 1986',
+    link: 'https://drive.google.com/file/d/13cqC5gZ3Oj7uXBEVEwAoZIsnAKXUBCIV/view?usp=sharing',
+    color: 'green',
+  },
+      {
+    title: 'Mineral Concession Amendment Rules 2020',
+    link: 'https://drive.google.com/file/d/110nZ7pMFZwHc0qxur6wqKkxzvwWbMk3h/view?usp=sharing',
+    color: 'yellow',
+  },
+  // Mineral_Concession_Amendment_Rules_2020
   {
     title: 'OSH Code 2020 (Occupational Safety, Health and Working Conditions Code, 2020)',
     link: 'https://drive.google.com/file/d/1SJJ1AamiI4H5F6qqjHgUXZ0ttk0XOI3b/view?usp=sharing',
@@ -14,11 +31,22 @@ const documents = [
     link: 'https://drive.google.com/file/d/1apaoSEccNgTUtynRJu2a_MMjwX38H5ga/view?usp=sharing',
     color: 'green',
   },
+    {
+    title: 'Electricity Act 2003',
+    link: 'https://drive.google.com/file/d/1Row7fLCs-14gqDr1JcmNBWbUc8wp7GZK/view?usp=sharing',
+    color: 'red',
+  },
   {
     title: 'Central Electricity Authority (Measures relating to Safety and Electric Supply) Regulations, 2023',
     link: 'https://drive.google.com/file/d/1agplAk7P-30BEEdxzuaZkf6FrMXlfLYV/view?usp=sharing',
     color: 'purple',
   },
+   {
+    title: 'Explosive Act 1884',
+    link: ' https://drive.google.com/file/d/1OUUbHG8DHg-JkhSmL-shWyKTvpGyziMd/view?usp=sharing',
+    color: 'blue',
+  },
+ 
   {
     title: 'The Explosives Rules, 2008',
     link: 'https://drive.google.com/file/d/1Uk_4ci225hXHieWmW7oyEU0if77I_k_A/view?usp=sharing',

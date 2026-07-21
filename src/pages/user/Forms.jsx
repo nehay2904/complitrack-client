@@ -833,7 +833,7 @@ const Forms = () => {
     <div className="p-8">
       <div className="mb-6">
         <h2 className="text-2xl font-normal text-gray-800 mb-1">Forms</h2>
-        <p className="text-gray-500 text-sm">Statutory Forms - click a regulation to view its forms</p>
+        <p className="text-gray-500 text-sm">The Mines Act, 1952 has been repealed and replaced by the OSH Code, 2020; consequently, CMR, 2017 forms have been superseded by the OSH Central Rules, 2026.</p>
       </div>
 
       {/* Regulation Links */}
