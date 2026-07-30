@@ -5,6 +5,8 @@ import toast from 'react-hot-toast';
 const statusColors = {
   Pending: 'bg-amber-50 text-amber-600 border-amber-200',
   Completed: 'bg-green-50 text-green-600 border-green-200',
+  Upcoming: 'bg-blue-50 text-blue-600 border-blue-200',
+  "Due This month": 'bg-yellow-50 text-yellow-600 border-yellow-200'
 };
 
 const emptyForm = {
@@ -221,6 +223,9 @@ const Compliances = () => {
           <option value="">All Status</option>
           <option value="Pending">Pending</option>
           <option value="Completed">Completed</option>
+          <option value="Upcoming">Upcoming</option>
+          <option value="Due This month">Due This month</option>
+
         </select>
         <select value={filterType} onChange={e => setFilterType(e.target.value)}
           className="px-4 py-2 bg-white border border-gray-300 rounded-lg text-gray-700 text-sm focus:outline-none focus:border-blue-500">
