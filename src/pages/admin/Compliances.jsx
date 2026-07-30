@@ -284,6 +284,8 @@ const Compliances = () => {
                       className={`px-2 py-1 rounded-full text-xs border font-medium focus:outline-none ${statusColors[c.status]}`}>
                       <option value="Pending">Pending</option>
                       <option value="Completed">Completed</option>
+                      <option value="Upcoming">Upcoming</option>
+                      <option value="Due This month">Due This month</option>
                     </select>
                   </td>
                   <td className="px-4 py-3">
