@@ -15,6 +15,21 @@ const documents = [
     link: 'https://drive.google.com/file/d/110nZ7pMFZwHc0qxur6wqKkxzvwWbMk3h/view?usp=sharing',
     color: 'yellow',
   },
+      {
+    title: 'Coal colliery rules 2024',
+    link: 'https://drive.google.com/file/d/1Y4bLZgPKVK8rukuVOvn0yp1HHmW4b7m9/view?usp=sharing',
+    color: 'blue',
+  },
+     {
+    title: 'Coal Mines Special Provisions Act 2015',
+    link: 'https://drive.google.com/file/d/1vAOODYwv6QnbKp5UFbTece5Mkz5bspQM/view?usp=sharing',
+    color: 'orange',
+  },
+      {
+    title: 'Coal blocks Allocation Rules Amendment 2020',
+    link: 'https://drive.google.com/file/d/1lkSU05CWqT2nhmPO-7Jdso2yQYKlIp7D/view?usp=sharing',
+    color: 'purple',
+  },
   // Mineral_Concession_Amendment_Rules_2020
   {
     title: 'OSH Code 2020 (Occupational Safety, Health and Working Conditions Code, 2020)',
