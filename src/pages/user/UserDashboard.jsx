@@ -17,6 +17,8 @@ const GREEN_DARK = "#0A3D25";
 const statusColors = {
   Pending: "bg-amber-500 text-white border-amber-600",
   Completed: "bg-green-600 text-white border-green-700",
+  Upcoming: "bg-blue-500 text-white border-blue-600",
+  "Due This month": "bg-yellow-500 text-white border-yellow-600",
 };
 
 const Ico = ({ children }) => (
@@ -122,6 +124,9 @@ const UserDashboard = () => {
     all: compliances.length,
     pending: compliances.filter((c) => c.status === "Pending").length,
     completed: compliances.filter((c) => c.status === "Completed").length,
+    upcoming: compliances.filter((c) => c.status === "Upcoming").length,
+
+    
     overdue: compliances.filter((c) => {
       const due = new Date(c.dueDate);
       return !isNaN(due) && today > due && c.status !== "Completed";
@@ -131,6 +136,8 @@ const UserDashboard = () => {
   const filtered = compliances.filter((c) => {
     if (filter === "pending") return c.status === "Pending";
     if (filter === "completed") return c.status === "Completed";
+    if (filter === "upcoming") return c.status === "Upcoming";
+    if (filter === "due-this-month") return c.status === "Due This month";
     if (filter === "overdue") {
       const due = new Date(c.dueDate);
       return !isNaN(due) && today > due && c.status !== "Completed";
