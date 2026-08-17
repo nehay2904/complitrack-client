@@ -452,6 +452,44 @@ const DATA = {
           "mode": "Physical / Electronic",
           "appl": "Working OC mines (GP IV/2&3, GP IV/1) — ongoing",
           "remarks": ""
+        }, {
+          "desc": "Vibration Report (Ground Vibration Record for each Blast)",
+          "act": "DGMS Blasting Permission",
+          "ref": "Letter No. 010913/SEZ/Raigarh Region/Perm/2022/236740, Point No. 6",
+          "detail": "A record of ground vibration measurement shall be maintained on a daily basis for each blast conducted, as stipulated in the DGMS blasting permission granted to the mine.",
+          "form": "Bound paged book / Electronic (seismograph record)",
+          "freq": "Daily — for each blast",
+          "authority": "Maintained at mine; produced to DGMS on requirement",
+          "signer": "Blasting Officer / Shotfirer; countersigned by Manager",
+          "mode": "Physical / Electronic",
+          "appl": "Working OC mines (GP IV/2&3, GP IV/1) — ongoing",
+          "remarks": "Not a CMR requirement — CMR 2017 is silent on vibration. This is purely a condition of the DGMS blasting permission, so it must be produced exactly as the permission requires"
+        },
+        {
+          "desc": "Shot-firer's Record at End of Shift (Blast Report)",
+          "act": "CMR 2017",
+          "ref": "Reg 206(b)",
+          "detail": "Immediately after the end of his shift, the shot-firer shall record in a bound paged book kept for the purpose the quantity of explosive taken, used and returned, the places where shots were fired, the number of shots fired by him, and misfires, if any, which shall be signed and dated by him.",
+          "form": "Bound paged book",
+          "freq": "End of every shift / each blast, each patch",
+          "authority": "Maintained at mine; produced to Inspector",
+          "signer": "Shot-firer (signed & dated by him)",
+          "mode": "Maintained (signed & dated)",
+          "appl": "Working OC mines (GP IV/2&3, GP IV/1) — ongoing",
+          "remarks": "Reg 206(a) also requires all unused explosive to be returned to the magazine or store. Read with Reg 185(4) and the Vibration Report for the same blast"
+        },
+        {
+          "desc": "Record of Explosives Issued and Returned (Magazine Register)",
+          "act": "CMR 2017",
+          "ref": "Reg 185(4)",
+          "detail": "The person in charge of the magazine or store or premises shall maintain, in a bound paged book kept for the purpose, a clear and accurate record of explosives issued to each competent person and a similar record of explosives returned to the magazine, store or premises.",
+          "form": "Bound paged book",
+          "freq": "On every issue and return of explosives",
+          "authority": "Magazine / Explosive Store; produced to Inspector",
+          "signer": "Person in charge of Magazine / Store",
+          "mode": "Maintained",
+          "appl": "Working OC mines (GP IV/2&3, GP IV/1) — ongoing",
+          "remarks": "Written requisition signed by shot-firer to be preserved (Reg 185(3)); reconciles with the shot-firer's Reg 206 record"
         }
       ]
     }
@@ -526,19 +564,6 @@ const DATA = {
           "mode": "Offline",
           "appl": "All four mines — on occurrence of the event",
           "remarks": ""
-        },
-        {
-          "desc": "Transport pass for every consignment of explosives",
-          "act": "Explosives Rules 2008",
-          "ref": "Rule 47(1)-(3)",
-          "detail": "A transport pass shall be issued for every consignment of explosives transported and copies sent to the licensing authority, the Controller and the District Superintendent of Police of both origin and destination.",
-          "form": "RE-12",
-          "freq": "Before despatch of each consignment",
-          "authority": "Controller + Dist. SP (origin & destination)",
-          "signer": "Consignor / Licensee",
-          "mode": "Offline",
-          "appl": "Working OC mines (GP IV/2&3, GP IV/1) — ongoing",
-          "remarks": ""
         }
       ],
       "Return": [
@@ -554,6 +579,58 @@ const DATA = {
           "mode": "Electronic (PESO portal) + Physical",
           "appl": "Working OC mines (GP IV/2&3, GP IV/1) — ongoing",
           "remarks": "Applies to the LE-3 magazine licence and the SME / bulk explosives plant licence separately"
+        },
+        {
+          "desc": "Indent of explosives and blasting accessories required for blasting",
+          "act": "Explosives Rules 2008",
+          "ref": "Rule 50 r/w Rule 77",
+          "detail": "Explosives and blasting accessories shall be indented in the prescribed form against the licence held, the indent being raised for the quantity required for blasting operations.",
+          "form": "RE-11",
+          "freq": "Monthly",
+          "authority": "Licensee / Supplier (against licence)",
+          "signer": "Blasting Officer / Manager / Licensee",
+          "mode": "Physical",
+          "appl": "Working OC mines (GP IV/2&3, GP IV/1) — ongoing",
+          "remarks": ""
+        },
+        {
+          "desc": "Transport pass issued by consignor for each consignment of explosives",
+          "act": "Explosives Rules 2008",
+          "ref": "Rule 47 r/w Rule 50",
+          "detail": "A transport pass shall be issued by the consignor for every consignment of explosives transported and copies sent to the licensing authority, the Controller and the District Superintendent of Police of both origin and destination.",
+          "form": "RE-12",
+          "freq": "Monthly (per consignment despatched)",
+          "authority": "Controller + Dist. SP (origin & destination)",
+          "signer": "Consignor / Licensee",
+          "mode": "Physical",
+          "appl": "Working OC mines (GP IV/2&3, GP IV/1) — ongoing",
+          "remarks": "Moved from Notice — treated as a recurring return"
+        },
+        {
+          "desc": "Daily magazine stock update (issue & return)",
+          "act": "Explosives Rules 2008",
+          "ref": "Rule 24",
+          "detail": "The magazine stock position shall be updated on a daily basis showing explosives issued from and returned to the magazine, in the prescribed form.",
+          "form": "RE-3",
+          "freq": "Daily",
+          "authority": "Magazine / Licensed premises; produced to Controller on demand",
+          "signer": "Magazine In-Charge / Licensee",
+          "mode": "Physical",
+          "appl": "Working OC mines (GP IV/2&3, GP IV/1) — ongoing",
+          "remarks": "Overlaps the RE-4 magazine stock register under Record — keep one as the master"
+        },
+        {
+          "desc": "Daily issue, consumption and return of explosives in the name of the shot-firer",
+          "act": "Explosives Rules 2008",
+          "ref": "Rule 24",
+          "detail": "A daily account shall be kept in the prescribed form of explosives issued to, consumed by and returned by each shot-firer, recorded against his name.",
+          "form": "RE-5",
+          "freq": "Daily",
+          "authority": "Magazine / Licensed premises; produced to Controller on demand",
+          "signer": "Magazine In-Charge / Shot-Firer",
+          "mode": "Physical",
+          "appl": "Working OC mines (GP IV/2&3, GP IV/1) — ongoing",
+          "remarks": ""
         },
         {
           "desc": "Renewal of licence before expiry",
@@ -597,6 +674,45 @@ const DATA = {
           "remarks": "Kept at the mine under CMR; explosives drawn/used/returned also recorded per Explosives Rules"
         },
         {
+          "desc": "Record of consumption of explosives in the mine",
+          "act": "Explosives Rules 2008",
+          "ref": "Rule 77(2)",
+          "detail": "A record shall be kept of the explosives consumed in the mine, maintained on a day-to-day basis at the mine.",
+          "form": "RE-13",
+          "freq": "Daily",
+          "authority": "Maintained at mine",
+          "signer": "Blasting Officer / Shot-Firer",
+          "mode": "At site",
+          "appl": "Working OC mines (GP IV/2&3, GP IV/1) — ongoing",
+          "remarks": ""
+        },
+        {
+          "desc": "Transit pass (issue & return) for blasting accessories",
+          "act": "CMR 2017",
+          "ref": "Reg 185(3)",
+          "detail": "A transit pass shall be issued by the Blasting Officer to the Magazine In-Charge for issue of blasting accessories to the shot-firer, and the return of unused accessories after blasting recorded against the same pass.",
+          "form": "Transit pass (issue & return)",
+          "freq": "Daily",
+          "authority": "Maintained at mine",
+          "signer": "Blasting Officer / Magazine In-Charge / Shot-Firer",
+          "mode": "At site",
+          "appl": "Working OC mines (GP IV/2&3, GP IV/1) — ongoing",
+          "remarks": ""
+        },
+        {
+          "desc": "Explosive loading sheet — quantity charged per hole with hole depth",
+          "act": "Explosives Rules 2008",
+          "ref": "Rule 24",
+          "detail": "A record shall be maintained of the quantity of explosive charged in each blast hole together with the depth of the hole.",
+          "form": "Explosive loading sheet",
+          "freq": "Daily (each blast)",
+          "authority": "Maintained at mine",
+          "signer": "Blasting Officer / Shot-Firer",
+          "mode": "At site",
+          "appl": "Working OC mines (GP IV/2&3, GP IV/1) — ongoing",
+          "remarks": ""
+        },
+        {
           "desc": "Stock register of explosives manufactured (SME / ANFO bulk plant)",
           "act": "Explosives Rules 2008",
           "ref": "Rule 24(1)-(2)",
@@ -614,13 +730,13 @@ const DATA = {
           "act": "Explosives Rules 2008",
           "ref": "Rule 24(1)-(2); SET-VII/VIII",
           "detail": "A true account of all explosives received into, issued from and stored in the magazine shall be maintained in the prescribed register and exhibited to inspecting officers on demand.",
-          "form": "RE-3 / RE-4",
+          "form": "RE-4",
           "freq": "Continuous; produce on demand",
           "authority": "Maintained at licensed premises",
           "signer": "Licensee / Magazine holder",
           "mode": "At site",
           "appl": "Working OC mines (GP IV/2&3, GP IV/1) — ongoing",
-          "remarks": ""
+          "remarks": "RE-3 daily stock update listed under Return"
         },
         {
           "desc": "Safety distances and 15 m clear zone around magazine",
@@ -647,6 +763,19 @@ const DATA = {
           "mode": "At site",
           "appl": "Working OC mines (GP IV/2&3, GP IV/1) — ongoing",
           "remarks": ""
+        },
+        {
+          "desc": "Earth pit resistance testing — protection from lightning and thunderstorm",
+          "act": "Explosives Rules 2008",
+          "ref": "Rule 12",
+          "detail": "The earth pit resistance of the lightning protection system shall be tested annually and the test results recorded, so that protection from lightning and thunderstorm is maintained.",
+          "form": "—",
+          "freq": "Yearly",
+          "authority": "Maintained at premises",
+          "signer": "Qualified Electrical Engineer / Licensee",
+          "mode": "At site",
+          "appl": "Working OC mines (GP IV/2&3, GP IV/1) — ongoing",
+          "remarks": "Usually carried out along with the annual lightning conductor test under Rule 12(2)"
         },
         {
           "desc": "Ammonium Nitrate stock account (receipt, conversion, consumption)",
@@ -1469,6 +1598,108 @@ const DATA = {
       ]
     }
   }, 
+  "CCO/Ministry of Coal": {
+    "label": "CCO / Ministry of Coal",
+    "color": "#0F766E",
+    "icon": "<path d=\"M3 21h18\" /><path d=\"M5 21V9l7-5 7 5v12\" /><path d=\"M9 21v-6h6v6\" />",
+    "items": {
+      "Notice": [],
+      "Return": [
+        {
+          "desc": "Energy data return — electrical energy, diesel and specific energy consumption for the month",
+          "act": "Colliery Control Rules, 2004 [as amended by G.S.R. 546(E) dated 09.08.2021]",
+          "ref": "Rule 5(1)",
+          "detail": "Every owner, agent or manager of a colliery and every person engaged in the business of production, supply and distribution of, or trade and commerce in coal, on being directed to do so by the Coal Controller shall submit such returns and other information including information regarding production of dispatch of coal, washery products from his mines, washery and process products, working methods and conditions in his mine or mines, within such time, as may be specified in the direction.",
+          "form": "—",
+          "freq": "Monthly — by the 10th of the succeeding month",
+          "authority": "Coal Controller's Organisation (CCO), Ministry of Coal",
+          "signer": "Owner / Agent / Manager (Geologist for JPL)",
+          "mode": "Electronic (CCO portal)",
+          "appl": "Working OC mines (GP IV/2&3, GP IV/1) — ongoing",
+          "remarks": ""
+        },
+        {
+          "desc": "Statistical return — coal raised, grade-wise despatch, stock and overburden removal for the month",
+          "act": "Colliery Control Rules, 2004 [as amended by G.S.R. 546(E) dated 09.08.2021]",
+          "ref": "Rule 5(1)",
+          "detail": "Every owner, agent or manager of a colliery and every person engaged in the business of production, supply and distribution of, or trade and commerce in coal, on being directed to do so by the Coal Controller shall submit such returns and other information including information regarding production of dispatch of coal, washery products from his mines, washery and process products, working methods and conditions in his mine or mines, within such time, as may be specified in the direction.",
+          "form": "—",
+          "freq": "Monthly — by the 10th of the succeeding month",
+          "authority": "Coal Controller's Organisation (CCO), Ministry of Coal",
+          "signer": "Owner / Agent / Manager (Geologist for JPL)",
+          "mode": "Electronic (CCO portal)",
+          "appl": "Working OC mines (GP IV/2&3, GP IV/1) — ongoing",
+          "remarks": ""
+        },
+        {
+          "desc": "Return of production, manpower and salaries/wages for the month",
+          "act": "Colliery Control Rules, 2004 [as amended by G.S.R. 546(E) dated 09.08.2021]",
+          "ref": "Rule 5(1)",
+          "detail": "Every owner, agent or manager of a colliery and every person engaged in the business of production, supply and distribution of, or trade and commerce in coal, on being directed to do so by the Coal Controller shall submit such returns and other information including information regarding production of dispatch of coal, washery products from his mines, washery and process products, working methods and conditions in his mine or mines, within such time, as may be specified in the direction.",
+          "form": "—",
+          "freq": "Monthly — by the 10th of the succeeding month",
+          "authority": "Coal Controller's Organisation (CCO), Ministry of Coal",
+          "signer": "Owner / Agent / Manager (Geologist for JPL)",
+          "mode": "Electronic (CCO portal)",
+          "appl": "Working OC mines (GP IV/2&3, GP IV/1) — ongoing",
+          "remarks": ""
+        },
+        {
+          "desc": "Form-R — coal produced, despatched, closing stock and statutory dues discharged for the month",
+          "act": "Colliery Control Rules, 2004 (return called for by the Coal Controller's Organisation)",
+          "ref": "Rule 5(1)",
+          "detail": "Monthly return in Form-R reporting run-of-mine coal produced, grade-wise coal despatched, closing stock at pithead and siding, and statutory dues discharged on such despatches. Filed with the Coal Controller's Organisation, the Nominated Authority and the State Government by the 10th of the following month.",
+          "form": "Form-R",
+          "freq": "Monthly — by the 10th of the succeeding month",
+          "authority": "CCO / Nominated Authority, MoC / State Govt. (Directorate of Geology & Mining, Chhattisgarh)",
+          "signer": "Owner / Agent / Manager (Geologist for JPL)",
+          "mode": "Electronic / Physical",
+          "appl": "Working OC mines (GP IV/2&3, GP IV/1) — ongoing",
+          "remarks": ""
+        },
+        {
+          "desc": "Submission of Royalty, DMF, NMET, TCS and Revenue Share paid for the month",
+          "act": "MMDR Act, 1957; Income-tax Act, 1961; CMDPA (Gare Palma IV/2 & IV/3)",
+          "ref": "Ss. 9(2), 9B(5), 9C(4) r/w Sch. II item 10 & G.S.R. 349(E) dt. 10.05.2012; IT Act s.206C(1C); CMDPA Cl. 9.1",
+          "detail": "Section 9(2): The holder of a mining lease granted on or after the commencement of this Act shall pay royalty in respect of any mineral removed or consumed by him or by his agent, manager, employee, contractor or sub-lessee from the leased area at the rate for the time being specified in the Second Schedule in respect of that mineral. Section 9B(5): The holder of a mining lease or a prospecting licence-cum-mining lease granted on or after the date of commencement of the Mines and Minerals (Development and Regulation) Amendment Act, 2015, shall, in addition to the royalty, pay to the District Mineral Foundation of the district in which the mining operations are carried on, an amount which is equivalent to such percentage of the royalty paid in terms of the Second Schedule, not exceeding one-third of such royalty, as may be prescribed by the Central Government. Section 9C(4): The holder of a mining lease or a prospecting licence-cum-mining lease shall pay to the Trust, a sum equivalent to two per cent. of the royalty paid in terms of the Second Schedule, in such manner as may be prescribed by the Central Government. CMDPA Clause 9.1.2: The Monthly Payment is required to be made to the State Government on the date on which the statutory royalty is payable, in the manner as may be prescribed by the State Government, with an intimation to the Nominated Authority.",
+          "form": "—",
+          "freq": "Monthly — with the royalty payment cycle",
+          "authority": "Mining Officer (District) / Nominated Authority, Ministry of Coal",
+          "signer": "Owner / Agent / Manager (Geologist for JPL)",
+          "mode": "Electronic / Physical",
+          "appl": "Working OC mines (GP IV/2&3, GP IV/1) — ongoing",
+          "remarks": "Payment obligation under MMDR + CMDPA, distinct from the Colliery Control Rules statistical returns"
+        },
+        {
+          "desc": "Provisional Coal Directory data for the previous financial year",
+          "act": "Collection of Statistics Act, 2008 (7 of 2009) r/w Collection of Statistics Rules, 2011",
+          "ref": "Return called for by notice of the Coal Controller's Organisation",
+          "detail": "Submission of the Provisional Annual Coal Directory Return in respect of the preceding financial year, in the form and manner specified in the notice issued by the Coal Controller's Organisation. Due by the 30th of April each year.",
+          "form": "—",
+          "freq": "Annual — by 30 April",
+          "authority": "Nominated Authority / Coal Controller's Organisation (CCO), Ministry of Coal",
+          "signer": "Owner / Agent / Manager (Geologist for JPL)",
+          "mode": "Electronic / Physical",
+          "appl": "Working OC mines (GP IV/2&3, GP IV/1) — ongoing",
+          "remarks": ""
+        },
+        {
+          "desc": "Final Coal Directory data for the previous financial year",
+          "act": "Collection of Statistics Act, 2008 (7 of 2009) r/w Collection of Statistics Rules, 2011",
+          "ref": "Return called for by notice of the Ministry of Coal",
+          "detail": "Submission of the final Annual Coal Directory Return in respect of the preceding financial year, in the form and manner specified in the notice issued by the Ministry of Coal. Due by the 31st of August each year.",
+          "form": "—",
+          "freq": "Annual — by 31 August",
+          "authority": "Dy. Director General (DDG), Ministry of Coal",
+          "signer": "Owner / Agent / Manager (Geologist for JPL)",
+          "mode": "Electronic / Physical",
+          "appl": "Working OC mines (GP IV/2&3, GP IV/1) — ongoing",
+          "remarks": ""
+        }
+      ],
+      "Record": []
+    }
+  },
   "Underground mining": {
   "label": "Underground Mining",
   "color": "#334155",
@@ -1848,8 +2079,7 @@ const DATA = {
 }
 
 };
-// 
-const AUTH_ORDER = ["dgms", "peso", "cea", "environment", "labour", "hr", "Underground mining"];
+const AUTH_ORDER = ["dgms", "peso", "cea", "environment", "labour", "hr","CCO/Ministry of Coal", "Underground mining"];
 const SUBS = [
   { key: "Notice", label: "Notices", accent: "#1D4ED8" },
   { key: "Return", label: "Returns", accent: "#B45309" },
